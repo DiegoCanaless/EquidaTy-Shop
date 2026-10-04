@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ---------------------------------------------------------------
+   EquidaTy Shop — mundo visual: blanco + bordo + negro.
+   Tipografía de marca: Archivo (variable). Display en Black (800)
+   con tracking apretado; cuerpo en regular (400). Ver layout.tsx.
+---------------------------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo);
+  --font-body: var(--font-archivo);
+
+  --color-bordo: #8b1a2b;
+  --color-bordo-hover: #a62238;
+  --color-nube: #f7e9ed;
+  --color-tinta: #171717;
+  --color-tenue: #52525b;
+  --color-superficie: #f4f4f5;
+  --color-linea: #e4e4e7;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  scrollbar-color: #d4d0d2 #f4f4f5;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-tinta);
+  font-weight: 400; /* Archivo regular */
+}
+
+/* Archivo en su variante Black para todo lo display: peso 800 y
+   tracking apretado, coherente con la identidad retail de la marca. */
+.font-display {
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Superficies del navegador, tematizadas desde la paleta */
+::selection {
+  background: var(--color-bordo);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-bordo);
+  outline-offset: 3px;
+}
+
+/* El destino del "Saltar al contenido" recibe foco programático:
+   sin outline (no es un foco de teclado visible) pero navegable. */
+main:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d0d2;
+  border: 3px solid #f4f4f5;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bordo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

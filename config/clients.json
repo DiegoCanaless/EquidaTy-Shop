@@ -1,0 +1,58 @@
+{
+  "clients": [
+    {
+      "slug": "matesartesanales",
+      "nombre": "Mates Artesanales",
+      "activo": true,
+      "moneda": "ARS",
+      "marca": {
+        "logo": "/clients/matesartesanales/logo.png",
+        "colores": {
+          "primario": "#6B3A22",
+          "acento": "#C9A227",
+          "fondo": "#FAF6F1",
+          "texto": "#2B1B12"
+        },
+        "tipografia": { "display": "Archivo", "cuerpo": "Archivo" },
+        "banner": {
+          "imagen": "/clients/matesartesanales/banner.jpg",
+          "alt": "Cuatro mates artesanales sobre una mesa de madera al atardecer",
+          "titulo": "Mates hechos a mano, uno por uno",
+          "cta": { "texto": "Ver mates", "href": "#catalogo" }
+        }
+      },
+      "catalogo": {
+        "sheetId": "1lC4pVAJbHXOquKZh-5ov05GPr7Oi2kdrwqRUtehGIBE",
+        "rango": "Productos!A1:Z1000"
+      },
+      "whatsapp": "5492612430088",
+      "redes": { "instagram": "https://instagram.com/matesartesanales" }
+    },
+    {
+      "slug": "norte-indumentaria",
+      "nombre": "Norte Indumentaria",
+      "activo": true,
+      "moneda": "ARS",
+      "marca": {
+        "logo": "/clients/norte-indumentaria/logo.png",
+        "colores": {
+          "primario": "#1E3A5F",
+          "acento": "#D9A566",
+          "fondo": "#FFFFFF",
+          "texto": "#111827"
+        },
+        "tipografia": { "display": "Archivo", "cuerpo": "Archivo" },
+        "banner": {
+          "titulo": "Nueva temporada, talles 1 al 12",
+          "cta": { "texto": "Ver novedades", "href": "#catalogo" }
+        }
+      },
+      "catalogo": {
+        "sheetId": "16LJjiAYlAjH-Pnt4mOJLqxMNGzx234ACtjOv6RUTz8Y",
+        "rango": "Productos!A1:Z1000"
+      },
+      "whatsapp": "5492612430088",
+      "redes": { "instagram": "https://instagram.com/norte.indumentaria" }
+    }
+  ]
+}
