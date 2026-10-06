@@ -43,3 +43,7 @@ next-env.d.ts
 # herramientas de revisión visual / logs
 .impeccable/
 *.log
+
+
+/test-results/
+/playwright-report
