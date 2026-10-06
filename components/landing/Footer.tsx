@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { WA } from "@/lib/site";
 
 const PRODUCTO = [
@@ -11,7 +12,7 @@ const PRODUCTO = [
 
 const CONTACTO = [
   { href: WA, texto: "WhatsApp" },
-  { href: "mailto:info@equidaty.com", texto: "info@equidaty.com" },
+  { href: "mailto:diegocanales112@gmail.com", texto: "diegocanales112@gmail.com" },
   { href: "https://instagram.com/equidaty", texto: "@equidaty" },
 ];
 
@@ -79,7 +80,14 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-white/50">
           <p>© 2026 Equidaty. Todos los derechos reservados.</p>
-          <p>EquidaTy Shop es un producto de Equidaty.</p>
+          <nav aria-label="Legales" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link href="/terminos" className="transition-colors hover:text-white">
+              Términos y Condiciones
+            </Link>
+            <Link href="/privacidad" className="transition-colors hover:text-white">
+              Política de Privacidad
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>

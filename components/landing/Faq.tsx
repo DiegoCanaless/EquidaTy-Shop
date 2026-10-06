@@ -23,7 +23,11 @@ const PREGUNTAS = [
   },
   {
     q: "¿Cómo se paga?",
-    a: "Te mandamos un link de Mercado Pago: abonás el alta de $80.000 una vez y después la mensualidad de $15.500 cada mes.",
+    a: "Te mandamos un link de Mercado Pago. Podés ir mes a mes (alta de $20.000 + $15.000 por mes) o prepagar: el año a $180.000 (con el alta bonificada) o 2 años a $350.000 (con 2 meses de regalo).",
+  },
+  {
+    q: "¿Puedo cancelar o pedir reembolso?",
+    a: "El plan mensual lo podés dar de baja cuando quieras. Los planes prepagos (Anual y 2 años) son un pago único y no son reembolsables.",
   },
 ];
 

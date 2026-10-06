@@ -11,9 +11,10 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://equidaty.shop"),
   title: "EquidaTy Shop — Tu planilla de Excel es tu tienda online",
   description:
-    "Convertimos tu Google Sheet o Excel en una tienda online con carrito que cierra por WhatsApp. Alta única $80.000 y $15.500 por mes, sin comisiones por venta.",
+    "Convertimos tu Google Sheet o Excel en una tienda online con carrito que cierra por WhatsApp. Alta única $20.000 y $15.000 por mes, sin comisiones por venta.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

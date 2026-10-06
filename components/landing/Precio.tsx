@@ -1,10 +1,46 @@
 import { IconoCheck, IconoWhatsApp } from "@/components/Iconos";
 import { WA } from "@/lib/site";
 
+type Plan = {
+  nombre: string;
+  precio: string;
+  unidad: string;
+  alta: string;
+  detalle: string;
+  destacado?: boolean;
+};
+
+const PLANES: Plan[] = [
+  {
+    nombre: "Mensual",
+    precio: "$15.000",
+    unidad: "/mes",
+    alta: "Alta única $20.000",
+    detalle: "La alta se paga una vez y después es mes a mes, sin contrato.",
+  },
+  {
+    nombre: "Anual",
+    precio: "$180.000",
+    unidad: "/año",
+    alta: "Alta bonificada",
+    detalle: "Un pago. Te bonificamos el alta ($20.000). Equivale a $15.000 por mes.",
+    destacado: true,
+  },
+  {
+    nombre: "2 años",
+    precio: "$350.000",
+    unidad: "/2 años",
+    alta: "2 meses de regalo",
+    detalle: "Un pago. Alta bonificada + 2 meses sin cargo. Equivale a $14.583 por mes.",
+  },
+];
+
 const INCLUIDOS = [
   "Tienda con URL propia",
   "Catálogo desde tu planilla",
   "Carrito que cierra por WhatsApp",
+  "Sin panel que aprender",
+  "Cargás tus productos con plantilla y videos",
   "Soporte humano en español",
   "Sin comisiones por venta",
 ];
@@ -16,35 +52,62 @@ export default function Precio() {
         <h2 className="max-w-[20ch] font-display text-[clamp(1.9rem,3.5vw,2.7rem)] leading-tight tracking-[-0.015em]">
           Precio claro, sin vueltas
         </h2>
+        <p className="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-white/85">
+          Empezá mes a mes, o prepagá y ahorrá.
+        </p>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-0">
-          <div className="md:pr-12">
-            <p className="text-[13px] uppercase tracking-[0.14em] text-white/70">
-              Alta única
-            </p>
-            <p className="mt-3 font-display text-5xl tabular-nums md:text-6xl">
-              $80.000
-            </p>
-            <p className="mt-4 max-w-[34ch] text-[15px] leading-relaxed text-white/85">
-              Setup y plantilla lista para tu tienda. Se paga una vez, cuando
-              damos de alta tu tienda.
-            </p>
-          </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {PLANES.map((p) => (
+            <div
+              key={p.nombre}
+              className={`flex flex-col rounded-2xl border p-6 md:p-7 ${
+                p.destacado
+                  ? "border-transparent bg-white text-tinta"
+                  : "border-white/20 bg-white/5 text-white"
+              }`}
+            >
+              {p.destacado && (
+                <span className="mb-4 w-fit rounded-full bg-bordo px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-white">
+                  Más elegido
+                </span>
+              )}
 
-          <div className="md:border-l md:border-white/25 md:pl-12">
-            <p className="text-[13px] uppercase tracking-[0.14em] text-white/70">
-              Mensual
-            </p>
-            <p className="mt-3 font-display text-5xl tabular-nums md:text-6xl">
-              $15.500
-              <span className="ml-2 font-body text-xl text-white/70">
-                /mes
-              </span>
-            </p>
-            <p className="mt-4 max-w-[34ch] text-[15px] leading-relaxed text-white/85">
-              Mantenimiento, soporte y tu tienda funcionando todo el mes.
-            </p>
-          </div>
+              <p
+                className={`text-[13px] uppercase tracking-[0.14em] ${
+                  p.destacado ? "text-bordo" : "text-white/70"
+                }`}
+              >
+                {p.nombre}
+              </p>
+
+              <p className="mt-3 font-display text-4xl tabular-nums md:text-5xl">
+                {p.precio}
+                <span
+                  className={`ml-1.5 font-body text-lg ${
+                    p.destacado ? "text-tinta/60" : "text-white/60"
+                  }`}
+                >
+                  {p.unidad}
+                </span>
+              </p>
+
+              <p
+                className={`mt-3 text-sm font-medium ${
+                  p.destacado ? "text-bordo" : "text-white/90"
+                }`}
+              >
+                {p.alta}
+              </p>
+
+              <p
+                className={`mt-3 text-sm leading-relaxed ${
+                  p.destacado ? "text-tinta/70" : "text-white/70"
+                }`}
+              >
+                {p.detalle}
+              </p>
+            </div>
+          ))}
         </div>
 
         <ul className="mt-12 flex flex-wrap gap-x-7 gap-y-3">
@@ -68,8 +131,11 @@ export default function Precio() {
             <IconoWhatsApp className="h-[18px] w-[18px]" />
             Hablanos por WhatsApp
           </a>
-          <p className="text-sm text-white/70">
-            Precios en pesos argentinos. Se abona por Mercado Pago.
+          <p className="max-w-[60ch] text-sm text-white/70">
+            Precios en pesos argentinos. Se abona por Mercado Pago. Los planes{" "}
+            <strong className="text-white/90">Anual</strong> y{" "}
+            <strong className="text-white/90">2 años</strong> son un pago único y{" "}
+            <strong className="text-white/90">no son reembolsables</strong>.
           </p>
         </div>
       </div>

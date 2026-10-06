@@ -42,7 +42,7 @@ export default function Hero() {
               <span>
                 Alta única{" "}
                 <strong className="font-display text-bordo">
-                  $80.000
+                  $20.000
                 </strong>
               </span>
               <span aria-hidden="true" className="text-linea">
@@ -51,7 +51,7 @@ export default function Hero() {
               <span>
                 Mensual{" "}
                 <strong className="font-display text-bordo">
-                  $15.500
+                  $15.000
                 </strong>
               </span>
               <span aria-hidden="true" className="text-linea">

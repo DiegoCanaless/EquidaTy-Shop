@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IconoWhatsApp } from "@/components/Iconos";
+import BotonVolver from "@/components/BotonVolver";
 import { WA } from "@/lib/site";
 
 export default function NotFound() {
@@ -26,12 +27,9 @@ export default function NotFound() {
       </p>
 
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <Link
-          href="/"
-          className="rounded-full border-[1.5px] border-tinta px-7 py-3.5 text-[15px] text-tinta transition-colors hover:bg-tinta hover:text-white"
-        >
-          Volver al inicio
-        </Link>
+        <BotonVolver className="rounded-full border-[1.5px] border-tinta px-7 py-3.5 text-[15px] text-tinta transition-colors hover:bg-tinta hover:text-white">
+          Volver atrás
+        </BotonVolver>
         <a
           href={WA}
           target="_blank"
