@@ -38,6 +38,19 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* En las tiendas la tipografía la elige cada cliente (config/clients.json),
+   traducida a variables CSS en app/[slug]/layout.tsx. El alcance .tienda
+   deja la landing de EquidaTy intacta. */
+.tienda {
+  font-family: var(--f-cuerpo);
+}
+
+.tienda .font-display {
+  font-family: var(--f-display);
+  font-weight: var(--f-display-peso);
+  letter-spacing: var(--f-display-tracking);
+}
+
 /* Superficies del navegador, tematizadas desde la paleta */
 ::selection {
   background: var(--color-bordo);
