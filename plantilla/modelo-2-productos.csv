@@ -1,0 +1,2 @@
+nombre,categoria,precio,precio_antes,stock,variante_1: Talle,variante_2: Color,variante_3: Presentación,variante_4: Opción,detalle_1: Material,detalle_2: Incluye,detalle_3: Medidas,detalle_4: Cuidados,imagen,descripcion
+Producto de ejemplo BORRAR ESTA FILA,Categoria,18500,21000,10,"S, M, L, XL","Negro, Gris",,,Algodón,Incluye bombilla,20 cm de alto,Lavar a mano,https://ejemplo.com/foto.jpg,Una o dos oraciones describiendo el producto.

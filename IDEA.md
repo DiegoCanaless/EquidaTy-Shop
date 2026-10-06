@@ -10,17 +10,20 @@ colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad �
 
 ## Modelo de negocio
 
-- **Alta (único)**: $80.000 ARS (setup + plantilla lista; la carga del catálogo la hace el cliente)
-- **Mensual**: 10 USD en pesos (~$15.500/mes, ajustar por MEP)
+- **Mensual**: alta $20.000 ARS + $15.000/mes (mes a mes, sin contrato).
+- **Anual**: $180.000 (un pago; **alta bonificada** = ahorra $20k).
+- **2 años**: $350.000 (un pago; **2 meses de regalo** + alta bonificada = ahorra $30k).
+- **Prepagos (Anual y 2 años): un pago único y SIN reembolsos** (el cliente debe
+  saberlo). El mensual se da de baja cuando quiera.
 - **Cobro**: **Plan de Suscripción de la app de Mercado Pago** — creás el plan
   (monto + frecuencia) en tu cuenta, mandás el link (`init_point`) al cliente
   una vez y MP le cobra solo cada mes con reintentos automáticos.
   **Sin panel ni botón en la web**: el control de pagos es la app de MP.
   Si algún día hace falta, la API + webhook queda para E4.
 - **Costo fijo**: Cloudflare Workers Paid $5 USD/mes ≈ $93k/año
-- **La cuenta**: 1 cliente ya cubre el costo y deja ~+$157k/año de ganancia
-  (2 clientes ≈ +$407k). Ojo: con Vercel Pro ($20 USD/mes) 2 clientes apenas
-  empataban — por eso Cloudflare.
+- **La cuenta** (alta $20k + $15k×12 = $200k/año por cliente; infra Cloudflare
+  $93k/año): 1 cliente deja ≈ **+$107k/año**; 2 clientes ≈ **+$307k/año**. Ojo:
+  con Vercel Pro ($20 USD/mes) 2 clientes apenas empataban — por eso Cloudflare.
 - **MP comisión**: ~5-7% + IVA por cobro online (elegir acreditación a 10-18
   días para bajar de 6.29% a 4.39%/3.39%)
 
@@ -31,8 +34,11 @@ colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad �
   `{ slug, nombre, activo, moneda, marca: { logo, colores, tipografia, banner },
     catalogo: { sheetId, rango }, whatsapp, redes }`
 - **Alta de cliente** = 1 línea en el JSON + push (deploy automático)
-- **URLs**: `equidaty.shop/[slug]` o dominio propio del cliente (lo paga él,
-  ~$15k/año, apunta con DNS a Cloudflare)
+- **URLs**: por defecto `equidaty.shop/[slug]` (demo/respaldo). **Dominio propio
+  por cliente** (lo paga él, ~$15k/año): se agrega `dominio` en `clients.json` y
+  `proxy.ts` detecta el Host y sirve la tienda en la **raíz** con links sin slug
+  (`matesartesanales.com` y `matesartesanales.com/producto/…`). Plataforma: en
+  Vercel se agrega el dominio al proyecto; en Cloudflare, *Custom Domain* del Worker.
 - **Fetch del CSV**:
   `https://docs.google.com/spreadsheets/d/{id}/gviz/tq?tqx=out:csv&sheet=Nombre`
   (requiere Sheet con permiso "cualquiera con el link"); cache `revalidate 60s`
@@ -55,21 +61,24 @@ colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad �
 ## Etapas
 
 1. **E0 · Validar**: copy del pitch + 5-10 pymes charladas
-   (¿usan Sheets? ¿pagarían $15.500/mes?)
+   (¿usan Sheets? ¿pagarían $20k de alta + $15.000/mes?)
 2. **E1 · Construir el producto completo**: catálogo desde CSV, slug,
    colores/logo/banner, buscador, carrito → WhatsApp (~1 semana)
 3. **E2 · Beta** con los testers (yo les paso la plantilla para que la copien y les doy de alta la tienda)
 4. **E3 · Primer cobro MP** → activar CF Workers Paid → publicar
-5. **E4 · Extras**: subdominios propios masivos, panel admin si hace falta
+5. **E4 · Extras**: subdominios propios masivos (sin panel: el diferencial es
+   "sin panel que aprender")
 
 ## Posicionamiento vs competencia
 
-| | Competencia | EquidaTy Shop |
-|---|---|---|
-| Precio | Tiendanube Impulso $78.999/mes · SpreadSimple $13.90 USD | ~$15.500/mes en ARS |
-| Soporte | Inglés / tickets | **WhatsApp en español** |
-| Setup | Self-service | **Plantilla lista + alta a mano** |
-| Pagos del cliente | Stripe (inviable para pyme AR) | **WhatsApp / MP** |
+| | Empretienda | Tiendanube | EquidaTy Shop |
+|---|---|---|---|
+| Precio | ~$10k/mes, alta $0 | Desde $26.999/mes (+ comisión) | **$20k alta + $15k/mes** |
+| Panel | Sí | Sí | **No: tu planilla es el panel** |
+| Checkout | Online (Mercado Pago) | Online (Mercado Pago) | **Por WhatsApp** |
+| Carga del catálogo | Panel | Panel | **Tu Google Sheet** |
+| Soporte | Centro de ayuda | Tickets | **WhatsApp humano, español** |
+| Para quién | Auto-servicio | Negocios que escalan | **El que no quiere aprender nada** |
 
 **Embudo**: producto de entrada → upsell a
 [web a medida $150k / Sistemas $350k / equidaty-shop (template, pausado)].
