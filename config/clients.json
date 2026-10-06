@@ -30,12 +30,12 @@
       "redes": { "instagram": "https://instagram.com/matesartesanales" }
     },
     {
-      "slug": "C-C",
+      "slug": "c-c",
       "nombre": "C-C",
       "activo": true,
       "moneda": "ARS",
       "marca": {
-        "logo": "/clients/c-c/logo1.png",
+        "logo": "/clients/c-c/logo.webp",
         "colores": {
           "primario": "#1A1614",
           "acento": "#C9A57B",
@@ -44,7 +44,7 @@
         },
         "tipografia": { "display": "Bodoni Moda", "cuerpo": "Manrope" },
         "banner": {
-          "imagen": "/clients/c-c/banner.jpg",
+          "imagen": "/clients/c-c/banner.webp",
           "alt": "Imagen banner de la tienda online",
           "titulo": "Perfumes árabes con firma moderna",
           "cta": { "texto": "Ver perfumes", "href": "#catalogo" }
