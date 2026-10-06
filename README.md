@@ -1,5 +1,7 @@
 # EquidaTy Shop
 
+[![CI](https://github.com/DiegoCanaless/EquidaTy-Shop/actions/workflows/ci.yml/badge.svg)](https://github.com/DiegoCanaless/EquidaTy-Shop/actions/workflows/ci.yml)
+
 Tienda online que **nace de una planilla**. El cliente carga su catálogo en un
 Google Sheet y nosotros le dejamos una tienda con URL propia: el carrito cierra
 **por WhatsApp**. Multi-tenant: **un solo proyecto** sirve a todos los clientes.
