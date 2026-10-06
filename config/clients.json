@@ -30,30 +30,32 @@
       "redes": { "instagram": "https://instagram.com/matesartesanales" }
     },
     {
-      "slug": "norte-indumentaria",
-      "nombre": "Norte Indumentaria",
+      "slug": "c-c",
+      "nombre": "C-C",
       "activo": true,
       "moneda": "ARS",
       "marca": {
-        "logo": "/clients/norte-indumentaria/logo.png",
+        "logo": "/clients/c-c/logo.webp",
         "colores": {
-          "primario": "#1E3A5F",
-          "acento": "#D9A566",
-          "fondo": "#FFFFFF",
-          "texto": "#111827"
+          "primario": "#1A1614",
+          "acento": "#C9A57B",
+          "fondo": "#F7F3EE",
+          "texto": "#1F1A16"
         },
-        "tipografia": { "display": "Archivo", "cuerpo": "Archivo" },
+        "tipografia": { "display": "Bodoni Moda", "cuerpo": "Manrope" },
         "banner": {
-          "titulo": "Nueva temporada, talles 1 al 12",
-          "cta": { "texto": "Ver novedades", "href": "#catalogo" }
+          "imagen": "/clients/c-c/banner.webp",
+          "alt": "Imagen banner de la tienda online",
+          "titulo": "Perfumes árabes con firma moderna",
+          "cta": { "texto": "Ver perfumes", "href": "#catalogo" }
         }
       },
       "catalogo": {
-        "sheetId": "16LJjiAYlAjH-Pnt4mOJLqxMNGzx234ACtjOv6RUTz8Y",
+        "sheetId": "1gEPe1jPiKZZm-63d32BOj--ajvlgzJCs8tiB67MWMP8",
         "rango": "Productos!A1:Z1000"
       },
-      "whatsapp": "5492612430088",
-      "redes": { "instagram": "https://instagram.com/norte.indumentaria" }
+      "whatsapp": "5492617171708",
+      "redes": { "instagram": "https://www.instagram.com/clauucanales/" }
     }
   ]
 }
