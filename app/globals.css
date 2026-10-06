@@ -49,6 +49,16 @@ body {
   outline-offset: 3px;
 }
 
+/* En las tiendas, las superficies del navegador toman la paleta del cliente. */
+.tienda ::selection {
+  background: var(--c-primario);
+  color: #ffffff;
+}
+
+.tienda :focus-visible {
+  outline-color: var(--c-primario);
+}
+
 /* El destino del "Saltar al contenido" recibe foco programático:
    sin outline (no es un foco de teclado visible) pero navegable. */
 main:focus {
@@ -74,5 +84,84 @@ main:focus {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Header de tienda: superficie translúcida sobre el fondo del cliente. */
+.header-tienda {
+  background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  backdrop-filter: blur(10px) saturate(1.4);
+}
+
+/* Vidriera: un solo momento de profundidad, atado al scroll. Sin soporte de
+   scroll-driven o con reduced-motion, el héroe queda estático. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .hero-media,
+    .hero-content {
+      animation-timeline: scroll();
+      animation-range: 0 60vh;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+    .hero-media {
+      animation-name: hero-media;
+    }
+    .hero-content {
+      animation-name: hero-content;
+    }
+  }
+}
+
+@keyframes hero-media {
+  from {
+    transform: translate3d(0, -6%, 0) scale(1.15);
+  }
+  to {
+    transform: translate3d(0, 6%, 0) scale(1.15);
+  }
+}
+
+@keyframes hero-content {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 4%, 0);
+  }
+}
+
+/* Carrito: entra desde la derecha. */
+@keyframes drawer-entrar {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes velo-entrar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.drawer-panel {
+  animation: drawer-entrar 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.drawer-velo {
+  animation: velo-entrar 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-panel,
+  .drawer-velo {
+    animation: none;
   }
 }

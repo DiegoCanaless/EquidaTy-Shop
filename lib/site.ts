@@ -12,3 +12,6 @@ export const WA = wa();
 
 /** Teléfono visible para humanos. */
 export const WA_VISIBLE = "+54 9 261 243-0088";
+
+/** Sitio de la agencia (para links absolutos desde dominios de clientes). */
+export const SITIO_URL = "https://equidaty.shop";

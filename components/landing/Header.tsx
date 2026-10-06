@@ -4,10 +4,10 @@ import { IconoWhatsApp } from "@/components/Iconos";
 import { WA } from "@/lib/site";
 
 const ENLACES = [
-  { href: "#como-funciona", texto: "Cómo funciona" },
-  { href: "#que-incluye", texto: "Qué incluye" },
-  { href: "#precio", texto: "Precio" },
-  { href: "#faq", texto: "Preguntas" },
+  { href: "/#como-funciona", texto: "Cómo funciona" },
+  { href: "/#que-incluye", texto: "Qué incluye" },
+  { href: "/#precio", texto: "Precio" },
+  { href: "/#faq", texto: "Preguntas" },
 ];
 
 export default function Header() {

@@ -8,10 +8,10 @@ web
 
 ## Users
 
-Dueños de pymes y emprendimientos pequeños, de cualquier lugar, que manejan su
-catálogo en una planilla (Excel o Google Sheets), con o sin experiencia previa
-vendiendo online. Quieren tener tienda online sin cambiar su forma de trabajar
-ni aprender una plataforma nueva.
+Dueños de pymes y emprendimientos pequeños que **ya manejan su catálogo en una
+planilla** (Excel o Google Sheets) y **venden por WhatsApp/Instagram** (o quieren
+empezar). Quieren tienda online sin cambiar su forma de trabajar ni aprender una
+plataforma nueva.
 
 ## Product Purpose
 
@@ -22,11 +22,14 @@ la mensualidad cubra costos dejando margen.
 
 ## Positioning
 
-La tienda online que nace de tu planilla. Mecanismo propio: no es SaaS
-self-serve — el cliente copia nuestra plantilla de Google Sheets a su cuenta y
-carga su catálogo; nosotros damos de alta todo a mano. Soporte humano por
-WhatsApp en español; precio accesible (~$15.500/mes) contra Tiendanube Impulso
-($78.999/mes) y SpreadSimple (inglés, USD).
+La tienda online que nace de tu planilla, para **vendedores que ya trabajan con
+una planilla y venden por WhatsApp**. No es SaaS self-serve: el cliente copia
+nuestra plantilla, carga su catálogo (plantilla + videos) y nosotros damos de
+alta la tienda. **Sin panel: tu planilla es el panel** — no aprendés ninguna
+plataforma y el pedido te llega por WhatsApp. Precio: alta **$20.000** +
+**$15.000/mes** (mes a mes), contra Empretienda (~$10k pero **con panel** y
+checkout online), Tiendanube (desde $26.999 + comisión) y SpreadSimple (inglés,
+USD).
 
 ## Operating Context
 
@@ -35,6 +38,11 @@ WhatsApp en español; precio accesible (~$15.500/mes) contra Tiendanube Impulso
   la web; sin botón de pago en la tienda.
 - Arquitectura: 1 solo proyecto multi-tenant (Cloudflare Workers); alta de
   cliente = línea en `config/clients.json` + push.
+- **Multidominio**: cada cliente puede tener su **dominio propio** (campo
+  `dominio` en `config/clients.json`). `proxy.ts` rutea por `Host` y sirve la
+  tienda en la **raíz** con links sin slug; `equidaty.shop/[slug]` queda como
+  demo/respaldo. Las tiendas pasan a render **dinámico** (usan `headers()` para
+  la base de los links).
 - Hosting por fases (decisión del dueño): **fase 0** (0 clientes
   cobrados, desarrollo y demos) → Vercel Hobby gratis, $0. **Primer
   cliente cobrado** → migrar a **Cloudflare Workers Paid ($5/mes)**:
@@ -50,16 +58,30 @@ WhatsApp en español; precio accesible (~$15.500/mes) contra Tiendanube Impulso
 
 - Catálogo desde Google Sheets/planilla, revalidate ~60s; carrito → WhatsApp;
   colores/tipografía/banner configurables por cliente en `config/clients.json`.
+  Cada producto tiene **página propia** (`/{slug}/producto/{id}`) con hasta 4
+  fotos (`imagen_1..4`: la grilla las rota al pasar el mouse y el detalle las
+  muestra en slide), selector de variantes, cantidad y consulta por WhatsApp
+  que **ya incluye la selección** en el mensaje.
   El banner es **opcional**: `banner.imagen` puede omitirse y la tienda muestra
   un banner de color primario con título y CTA (logo y banner siempre tienen
   fallback para no romperse si faltan los archivos).
+- Composición de la tienda (dirección de diseño vigente): **vidriera +
+  catálogo**. El inicio abre con un héroe a pantalla (`100dvh` en desktop,
+  `~70dvh` en mobile para que asome la primera fila) con la imagen/título/CTA
+  del banner; sin `banner.imagen` **no hay héroe**: se muestra una **cabecera
+  compacta de marca** (título + CTA sobre color primario, con línea de acento)
+  y los productos arrancan enseguida. Un solo momento de movimiento: parallax de la
+  imagen atado al scroll (CSS scroll-driven), desactivado con
+  `prefers-reduced-motion`. Debajo, grilla estilo MercadoLibre.
 - Plantilla de Google Sheets provista (títulos claros + fila de ejemplo que el
-  cliente borra); la carga del catálogo la hace el cliente.
+  cliente borra) **y videos tutoriales**; la carga del catálogo la hace el
+  cliente. **No hay panel** (ese es el diferencial).
 - Sin base de datos, sin auth, sin pagos online en la web.
 - Precios confirmados y **visibles en la landing** (decisión del dueño):
-  alta única **$80.000 ARS** (setup + plantilla lista) y mensual
-  **~$15.500/mes** (10 USD al MEP, ajustable; la landing **no** muestra el
-  equivalente en USD — decisión del dueño).
+  **Mensual** alta $20.000 + $15.000/mes (mes a mes, sin contrato) · **Anual**
+  $180.000 un pago (alta bonificada) · **2 años** $350.000 un pago (2 meses de
+  regalo). Los **prepagos son un pago único y NO reembolsables** (se comunica al
+  cliente en la landing). La landing **no** muestra equivalente en USD.
 
 ## Brand Commitments
 

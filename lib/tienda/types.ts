@@ -6,6 +6,11 @@ export interface Variante {
     opciones: string[]
 }
 
+export interface Detalle {
+    etiqueta: string,
+    valor: string
+}
+
 export interface Producto {
     id: string
     nombre: string
@@ -14,13 +19,15 @@ export interface Producto {
     precioAntes?: number
     stock: number
     descripcion?: string
-    imagen?: string
+    imagenes: string[]
     variantes: Variante[]
+    detalles: Detalle[]
 }
 
 export interface Cliente {
     slug: string;
     nombre: string;
+    dominio?: string;
     activo: boolean;
     moneda: string;
     marca: {

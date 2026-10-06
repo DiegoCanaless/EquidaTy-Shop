@@ -3,6 +3,7 @@
     {
       "slug": "matesartesanales",
       "nombre": "Mates Artesanales",
+      "dominio": "matesartesanales.com",
       "activo": true,
       "moneda": "ARS",
       "marca": {

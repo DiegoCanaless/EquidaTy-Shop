@@ -1,6 +1,24 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path"
+
 const URL_EXPORT = "https://docs.google.com/spreadsheets/d";
 
 export async function fetchCsv(sheetId: string): Promise<string> {
+
+    // Modo E2E
+    const fixture = process.env.E2E_CSV_FIXTURE;
+
+    if (fixture) {
+        try {
+            return await readFile(path.join(process.cwd(), "e2e", "fixtures", fixture), "utf8");
+        } catch (error) {
+            console.warn(`[csv] No se pudo leer el fixture ${fixture}:`, error);
+            return "";
+        }
+    }
+
+
+
     const url = `${URL_EXPORT}/${sheetId}/export?format=csv&gid=0`;
 
 

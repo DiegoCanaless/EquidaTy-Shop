@@ -10,7 +10,7 @@ const PROBLEMAS = [
   {
     problema: "Las tiendas online salen una fortuna",
     solucion:
-      "Alta única $80.000 y $15.500 por mes. Sin comisiones por venta.",
+      "Alta única $20.000 y $15.000 por mes. Sin comisiones por venta.",
   },
   {
     problema: "Quiero vender por WhatsApp sin enredos",
