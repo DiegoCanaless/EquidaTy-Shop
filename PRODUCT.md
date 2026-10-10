@@ -70,9 +70,10 @@ USD).
   `~70dvh` en mobile para que asome la primera fila) con la imagen/título/CTA
   del banner; sin `banner.imagen` **no hay héroe**: se muestra una **cabecera
   compacta de marca** (título + CTA sobre color primario, con línea de acento)
-  y los productos arrancan enseguida. Un solo momento de movimiento: parallax de la
-  imagen atado al scroll (CSS scroll-driven), desactivado con
-  `prefers-reduced-motion`. Debajo, grilla estilo MercadoLibre.
+  y los productos arrancan enseguida. Un solo momento de movimiento: **entrada
+  del hero** (la imagen se asienta y el contenido cae en cascada, con la regla
+  de acento dibujándose), desactivado con `prefers-reduced-motion`. Debajo,
+  grilla estilo MercadoLibre.
 - Plantilla de Google Sheets provista (títulos claros + fila de ejemplo que el
   cliente borra) **y videos tutoriales**; la carga del catálogo la hace el
   cliente. **No hay panel** (ese es el diferencial).

@@ -5,6 +5,7 @@ import CarritoDrawer from "@/components/tienda/CarritoDrawer";
 import { baseTienda } from "@/lib/tienda/rutas";
 import { hostActual } from "@/lib/tienda/host";
 import { getClient } from "@/lib/clients";
+import { logoExiste } from "@/lib/tienda/logo";
 import { Metadata } from "next";
 import { Archivo, Bodoni_Moda, Manrope } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -62,6 +63,10 @@ export default async function TiendaLayout({
     const fuenteDisplay = FUENTES[tipografia.display] ?? FUENTES.Archivo;
     const fuenteCuerpo = FUENTES[tipografia.cuerpo] ?? FUENTES.Archivo;
 
+    const logo = logoExiste(cliente.marca.logo)
+        ? cliente.marca.logo
+        : undefined;
+
     return (
         <div
             className={`tienda ${archivo.variable} ${bodoni.variable} ${manrope.variable} min-h-screen bg-[var(--c-fondo)] text-[var(--c-texto)]`}
@@ -78,8 +83,8 @@ export default async function TiendaLayout({
                 } as React.CSSProperties
             }>
             <CarritoProvider slug={cliente.slug} base={base}>
-                <HeaderTienda cliente={cliente} base={base} />
-                {children}
+                <HeaderTienda cliente={cliente} base={base} logo={logo} />
+                <div className="pt-16">{children}</div>
                 <FooterTienda cliente={cliente} base={base} />
                 <CarritoDrawer moneda={cliente.moneda} />
             </CarritoProvider>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { formatearPrecio } from "@/lib/tienda/formato";
-import { IconoWhatsApp, IconoCarrito } from "@/components/Iconos";
+import { IconoWhatsApp, IconoCarrito, IconoMas, IconoMenos } from "@/components/Iconos";
 import { useCarrito } from "./carrito-contexto";
 import type { Producto } from "@/lib/tienda/types";
 
@@ -126,9 +126,9 @@ export default function ComprarProducto({
                         aria-label="Restar"
                         onClick={() => setCantidad((c) => Math.max(1, c - 1))}
                         disabled={agotado}
-                        className="grid h-10 w-10 place-items-center text-lg text-[var(--c-texto)]"
+                        className="grid h-10 w-10 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5 disabled:opacity-40"
                     >
-                        −
+                        <IconoMenos className="h-4 w-4" />
                     </button>
                     <span className="w-8 text-center tabular-nums text-[var(--c-texto)]">
                         {cantidad}
@@ -138,9 +138,9 @@ export default function ComprarProducto({
                         aria-label="Sumar"
                         onClick={() => setCantidad((c) => Math.min(maxCantidad, c + 1))}
                         disabled={agotado}
-                        className="grid h-10 w-10 place-items-center text-lg text-[var(--c-texto)]"
+                        className="grid h-10 w-10 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5 disabled:opacity-40"
                     >
-                        +
+                        <IconoMas className="h-4 w-4" />
                     </button>
                 </div>
 

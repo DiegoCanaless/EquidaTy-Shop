@@ -6,6 +6,7 @@ import { getProducto } from "@/lib/tienda/productos";
 import { formatearPrecio } from "@/lib/tienda/formato";
 import ComprarProducto from "@/components/tienda/ComprarProducto";
 import GaleriaProducto from "@/components/tienda/GaleriaProducto";
+import { IconoFlechaIzq } from "@/components/Iconos";
 import { baseTienda } from "@/lib/tienda/rutas";
 
 export const revalidate = 60;
@@ -51,12 +52,13 @@ export default async function ProductoPage({
 
     return (
         <main className="mx-auto w-full max-w-6xl px-4 py-6">
-            <nav className="mb-5 text-sm text-black/50">
+            <nav className="mb-5">
                 <Link
                     href={base || "/"}
-                    className="hover:text-[var(--c-texto)]"
+                    className="inline-flex items-center gap-1.5 text-sm text-black/50 transition-colors hover:text-[var(--c-texto)]"
                 >
-                    ← Volver a la tienda
+                    <IconoFlechaIzq className="h-4 w-4" />
+                    Volver a la tienda
                 </Link>
             </nav>
 
@@ -66,19 +68,26 @@ export default async function ProductoPage({
                     alt={producto.nombre}
                 />
 
-                <div className="flex flex-col gap-5">
-                    <div>
-                        <p className="text-xs font-medium uppercase tracking-[0.18em] text-black/45">
-                            {producto.categoria}
-                        </p>
-                        <h1 className="mt-1 font-display text-3xl leading-tight tracking-tight text-[var(--c-texto)] sm:text-4xl">
+                <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-2">
+                        <h1 className="font-display text-3xl leading-tight tracking-tight text-[var(--c-texto)] sm:text-4xl">
                             {producto.nombre}
                         </h1>
+                        {producto.categoria && (
+                            <Link
+                                href={`${base}/catalogo?cat=${encodeURIComponent(
+                                    producto.categoria
+                                )}`}
+                                className="w-fit text-xs font-medium uppercase tracking-[0.16em] text-black/45 transition-colors hover:text-[var(--c-texto)]"
+                            >
+                                {producto.categoria}
+                            </Link>
+                        )}
                     </div>
 
                     <div className="flex flex-col gap-2">
                         {antes !== undefined && (
-                            <span className="w-fit rounded bg-[var(--c-acento)] px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-[var(--c-texto)]">
+                            <span className="w-fit rounded-full bg-[var(--c-acento)] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--c-texto)]">
                                 Oferta
                             </span>
                         )}

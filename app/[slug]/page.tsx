@@ -56,14 +56,12 @@ export default async function TiendaPage({
                   .sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
 
     return (
-        <main>
+        <main className={cliente.marca.banner.imagen ? "-mt-16" : undefined}>
             {cliente.marca.banner.imagen ? (
                 <HeroTienda cliente={cliente} />
             ) : (
                 <CabeceraTienda cliente={cliente} />
             )}
-
-            <Categorias categorias={categorias} base={base} />
 
             <div id="catalogo" className="scroll-mt-20">
                 {destacados.length > 0 && (
@@ -76,6 +74,8 @@ export default async function TiendaPage({
                     />
                 )}
             </div>
+
+            <Categorias categorias={categorias} base={base} />
 
             {cliente.sucursales && cliente.sucursales.length > 0 && (
                 <Sucursales sucursales={cliente.sucursales} />

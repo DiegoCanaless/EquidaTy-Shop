@@ -161,6 +161,38 @@ export function IconoNavegar({ className }: Props) {
   );
 }
 
+export function IconoMenos({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M5 12h14" />
+    </svg>
+  );
+}
+
+export function IconoCerrar({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  );
+}
+
+export function IconoFlechaIzq({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M19 12H5M11 6l-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function IconoFlechaDer({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
 export function IconoTelefono({ className }: Props) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>

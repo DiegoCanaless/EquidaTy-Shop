@@ -1,56 +1,88 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { IconoWhatsApp } from "@/components/Iconos";
 import BotonCarrito from "@/components/tienda/BotonCarrito";
-import { logoExiste } from "@/lib/tienda/logo";
 import type { Cliente } from "@/lib/tienda/types";
 
 export default function HeaderTienda({
     cliente,
     base,
+    logo,
 }: {
     cliente: Cliente;
     base: string;
+    logo?: string;
 }) {
-    const { nombre, marca, whatsapp, redes } = cliente;
-    const haySucursales = !!cliente.sucursales && cliente.sucursales.length > 0;
+    const { nombre, marca, whatsapp, redes, sucursales } = cliente;
+    const haySucursales = !!sucursales && sucursales.length > 0;
+    const tieneBanner = !!marca.banner.imagen;
+
+    const pathname = usePathname();
+    const [solido, setSolido] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setSolido(window.scrollY > 24);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
+    // En el home con banner el header flota transparente sobre el hero; en el
+    // resto de las páginas, o al scrollear, se vuelve sólido.
+    const enHome = pathname === (base || "/");
+    const flotante = enHome && tieneBanner && !solido;
+    const tinta = flotante ? "text-white" : "text-[var(--c-texto)]";
 
     return (
-        <header className="header-tienda sticky top-0 z-50 border-b border-black/10">
+        <header
+            className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+                flotante ? "bg-transparent" : "header-tienda border-b border-black/10"
+            }`}
+        >
             <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
                 <Link href={base || "/"} className="flex items-center gap-3">
-                    {logoExiste(marca.logo) ? (
+                    {logo ? (
                         <Image
-                            src={marca.logo}
+                            src={logo}
                             alt={nombre}
                             width={1600}
                             height={576}
-                            className="h-9 w-auto object-contain mix-blend-multiply"
+                            className={`h-9 w-auto object-contain transition-[filter] duration-300 ${
+                                flotante
+                                    ? "[filter:brightness(0)_invert(1)]"
+                                    : "mix-blend-multiply"
+                            }`}
                         />
                     ) : (
-                        <span className="font-display text-lg text-[var(--c-texto)]">
+                        <span className={`font-display text-lg ${tinta}`}>
                             {nombre}
                         </span>
                     )}
                 </Link>
 
-                <nav className="ml-5 hidden items-center gap-5 text-sm md:flex">
+                <nav
+                    className={`ml-5 hidden items-center gap-5 text-sm md:flex ${tinta}`}
+                >
                     <Link
                         href={base || "/"}
-                        className="text-[var(--c-texto)] hover:opacity-70"
+                        className="transition-opacity hover:opacity-70"
                     >
                         Inicio
                     </Link>
                     <Link
                         href={`${base}/catalogo`}
-                        className="text-[var(--c-texto)] hover:opacity-70"
+                        className="transition-opacity hover:opacity-70"
                     >
                         Catálogo
                     </Link>
                     {haySucursales && (
                         <Link
                             href={`${base}/#sucursales`}
-                            className="text-[var(--c-texto)] hover:opacity-70"
+                            className="transition-opacity hover:opacity-70"
                         >
                             Sucursales
                         </Link>
@@ -63,13 +95,13 @@ export default function HeaderTienda({
                             href={redes.instagram}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hidden text-sm text-[var(--c-texto)] hover:opacity-70 sm:inline"
+                            className={`hidden text-sm sm:inline ${tinta} hover:opacity-70`}
                         >
                             Instagram
                         </a>
                     )}
 
-                    <BotonCarrito />
+                    <BotonCarrito claro={flotante} />
 
                     <a
                         href={`https://wa.me/${whatsapp}`}

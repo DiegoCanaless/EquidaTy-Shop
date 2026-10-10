@@ -11,7 +11,25 @@ export default function Hero() {
           <div>
             <h1 className="max-w-[22ch] font-display text-[clamp(2.35rem,5.2vw,3.7rem)] leading-[1.07] tracking-[-0.02em] text-tinta">
               Convertí tu planilla de Excel en{" "}
-              <span className="text-bordo">tu tienda online</span>.
+              <span className="relative inline-block text-bordo">
+                tu tienda online
+                <svg
+                  className="hero-underline"
+                  viewBox="0 0 300 12"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 8C58 2 118 12 178 5s92-1 120 1"
+                    pathLength={1}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={3}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              .
             </h1>
 
             <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-tenue">
