@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <h1 className="max-w-[22ch] font-display text-[clamp(2.35rem,5.2vw,3.7rem)] leading-[1.07] tracking-[-0.02em] text-tinta">
-              Tu planilla de Excel es{" "}
+              Convertí tu planilla de Excel en{" "}
               <span className="text-bordo">tu tienda online</span>.
             </h1>
 

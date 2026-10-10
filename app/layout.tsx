@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
+import { SITIO_URL } from "@/lib/site";
 import "./globals.css";
 
 /* Tipografía de marca: Archivo (variable 100–900). Display en Black (800)
@@ -11,8 +12,8 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://equidaty.shop"),
-  title: "EquidaTy Shop — Tu planilla de Excel es tu tienda online",
+  metadataBase: new URL(SITIO_URL),
+  title: "EquidaTy Shop — Convertí tu planilla de Excel en tu tienda online",
   description:
     "Convertimos tu Google Sheet o Excel en una tienda online con carrito que cierra por WhatsApp. Alta única $20.000 y $15.000 por mes, sin comisiones por venta.",
 };

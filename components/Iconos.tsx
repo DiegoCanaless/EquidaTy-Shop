@@ -106,3 +106,91 @@ export function IconoFlechaAbajo({ className }: Props) {
     </svg>
   );
 }
+
+export function IconoMail({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M4 7.5l8 5.5 8-5.5" />
+    </svg>
+  );
+}
+
+export function IconoUbicacion({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M12 21c4.5-4.3 7-7.9 7-11a7 7 0 1 0-14 0c0 3.1 2.5 6.7 7 11Z" />
+      <circle cx="12" cy="10" r="2.6" />
+    </svg>
+  );
+}
+
+export function IconoReloj({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 1.8" />
+    </svg>
+  );
+}
+
+export function IconoEnvio({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M3 6.5h11v9.5H3zM14 10h3.6l2.9 3v3H14z" />
+      <circle cx="7" cy="17.5" r="1.6" />
+      <circle cx="17" cy="17.5" r="1.6" />
+    </svg>
+  );
+}
+
+export function IconoPago({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <rect x="3" y="6" width="18" height="12" rx="2" />
+      <path d="M3 10h18M6.5 14h3" />
+    </svg>
+  );
+}
+
+export function IconoNavegar({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M12 3l7.5 17.5L12 16.5 4.5 20.5 12 3Z" />
+    </svg>
+  );
+}
+
+export function IconoTelefono({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <path d="M6.4 3.5h3l1.4 3.8-2 1.5a12.5 12.5 0 0 0 6.4 6.4l1.5-2 3.8 1.4v3c0 1.1-.9 1.9-2 1.8C11.6 19 5 12.4 4.6 5.5c-.1-1.1.7-2 1.8-2Z" />
+    </svg>
+  );
+}
+
+export function IconoInstagram({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" {...trazo}>
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+      <circle cx="12" cy="12" r="3.7" />
+      <circle cx="16.9" cy="7.1" r="0.9" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function IconoFacebook({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M13.5 21v-7h2.4l.4-2.8h-2.8V9.4c0-.8.2-1.35 1.4-1.35h1.5V5.6c-.26-.03-1.14-.11-2.16-.11-2.14 0-3.6 1.3-3.6 3.7v2.01H8.2V14h2.44v7h2.86Z" />
+    </svg>
+  );
+}
+
+export function IconoTikTok({ className }: Props) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M16.5 3c.3 1.9 1.5 3.2 3.5 3.4v2.4c-1.3.1-2.5-.3-3.6-1v6.1c0 3.3-2.4 5.6-5.5 5.6-2.9 0-5-2.1-5-4.9 0-3 2.4-5.1 5.5-4.7v2.5c-.4-.15-.8-.2-1.2-.2-1.4 0-2.4 1-2.4 2.4 0 1.4 1 2.4 2.4 2.4 1.5 0 2.6-1.1 2.6-2.7V3h3.2Z" />
+    </svg>
+  );
+}

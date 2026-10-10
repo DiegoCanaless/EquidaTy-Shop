@@ -1,14 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
 import { IconoWhatsApp } from "@/components/Iconos";
 import BotonCarrito from "@/components/tienda/BotonCarrito";
+import { logoExiste } from "@/lib/tienda/logo";
 import type { Cliente } from "@/lib/tienda/types";
-
-function logoExiste(logo?: string): logo is string {
-    return !!logo && fs.existsSync(path.join(process.cwd(), "public", logo));
-}
 
 export default function HeaderTienda({
     cliente,
@@ -18,6 +13,7 @@ export default function HeaderTienda({
     base: string;
 }) {
     const { nombre, marca, whatsapp, redes } = cliente;
+    const haySucursales = !!cliente.sucursales && cliente.sucursales.length > 0;
 
     return (
         <header className="header-tienda sticky top-0 z-50 border-b border-black/10">
@@ -37,6 +33,29 @@ export default function HeaderTienda({
                         </span>
                     )}
                 </Link>
+
+                <nav className="ml-5 hidden items-center gap-5 text-sm md:flex">
+                    <Link
+                        href={base || "/"}
+                        className="text-[var(--c-texto)] hover:opacity-70"
+                    >
+                        Inicio
+                    </Link>
+                    <Link
+                        href={`${base}/catalogo`}
+                        className="text-[var(--c-texto)] hover:opacity-70"
+                    >
+                        Catálogo
+                    </Link>
+                    {haySucursales && (
+                        <Link
+                            href={`${base}/#sucursales`}
+                            className="text-[var(--c-texto)] hover:opacity-70"
+                        >
+                            Sucursales
+                        </Link>
+                    )}
+                </nav>
 
                 <div className="ml-auto flex items-center gap-3">
                     {redes?.instagram && (

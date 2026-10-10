@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { parseCsv } from "./csv";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { parseCsv, fetchCsv, nombrePestana } from "./csv";
 
 
 
@@ -43,11 +43,52 @@ describe("parseCsv", () => {
         )
     })
 
-
-
-
-
-
-
-
 })
+
+describe("nombrePestana", () => {
+    it("extrae la pestaña antes del !", () => {
+        expect(nombrePestana("Productos!A1:Z1000")).toBe("Productos");
+    });
+
+    it("si no hay !, usa el texto tal cual", () => {
+        expect(nombrePestana("Productos")).toBe("Productos");
+    });
+
+    it("con string vacío devuelve vacío", () => {
+        expect(nombrePestana("")).toBe("");
+    });
+});
+
+describe("fetchCsv", () => {
+    afterEach(() => vi.unstubAllGlobals());
+
+    it("pide la pestaña por nombre cuando se la pasan", async () => {
+        const fetchMock = vi.fn().mockResolvedValue(
+            new Response("nombre,precio\nMate,100", {
+                status: 200,
+                headers: { "content-type": "text/csv" },
+            })
+        );
+        vi.stubGlobal("fetch", fetchMock);
+
+        await fetchCsv("SHEETID", "Productos");
+
+        const url = String(fetchMock.mock.calls[0]?.[0] ?? "");
+        expect(url).toContain("/SHEETID/export?format=csv&sheet=Productos");
+    });
+
+    it("sin pestaña cae al export de la primera hoja (gid=0)", async () => {
+        const fetchMock = vi.fn().mockResolvedValue(
+            new Response("nombre,precio\nMate,100", {
+                status: 200,
+                headers: { "content-type": "text/csv" },
+            })
+        );
+        vi.stubGlobal("fetch", fetchMock);
+
+        await fetchCsv("SHEETID");
+
+        const url = String(fetchMock.mock.calls[0]?.[0] ?? "");
+        expect(url).toContain("/SHEETID/export?format=csv&gid=0");
+    });
+});

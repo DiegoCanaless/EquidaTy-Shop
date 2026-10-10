@@ -27,7 +27,30 @@
         "rango": "Productos!A1:Z1000"
       },
       "whatsapp": "5492612430088",
-      "redes": { "instagram": "https://instagram.com/matesartesanales" }
+      "info": {
+        "descripcion": "Mates artesanales hechos a mano en Mendoza, uno por uno.",
+        "email": "hola@matesartesanales.com",
+        "telefono": "+54 9 261 243-0088",
+        "envios": "Enviamos a todo el país por Correo Argentino.",
+        "pagos": "Efectivo, transferencia y Mercado Pago."
+      },
+      "sucursales": [
+        {
+          "nombre": "Local Centro",
+          "direccion": "Av. San Martín 1234, Mendoza",
+          "horarios": "Lun a Sáb, 10 a 19 hs",
+          "telefono": "+54 9 261 243-0088"
+        },
+        {
+          "nombre": "Feria de Guaymallén",
+          "direccion": "Acceso Este, Guaymallén, Mendoza",
+          "horarios": "Sáb y Dom, 9 a 14 hs"
+        }
+      ],
+      "redes": {
+        "instagram": "https://instagram.com/matesartesanales",
+        "facebook": "https://facebook.com/matesartesanales"
+      }
     },
     {
       "slug": "c-c",
@@ -55,7 +78,16 @@
         "rango": "Productos!A1:Z1000"
       },
       "whatsapp": "5492617171708",
-      "redes": { "instagram": "https://www.instagram.com/clauucanales/" }
+      "info": {
+        "descripcion": "Perfumes árabes con firma moderna, seleccionados uno a uno.",
+        "email": "hola@ccperfumes.com",
+        "envios": "Enviamos a todo el país.",
+        "pagos": "Transferencia y Mercado Pago."
+      },
+      "redes": {
+        "instagram": "https://www.instagram.com/clauucanales/",
+        "tiktok": "https://tiktok.com/@clauucanales"
+      }
     }
   ]
 }

@@ -30,8 +30,8 @@ export default function Image() {
                 >
                     EquidaTy Shop
                 </span>
-                <span style={{ fontSize: 82, fontWeight: 700, lineHeight: 1.05 }}>
-                    Tu planilla de Excel es tu tienda online
+                <span style={{ fontSize: 70, fontWeight: 700, lineHeight: 1.05 }}>
+                    Convertí tu planilla de Excel en tu tienda online
                 </span>
                 <span style={{ fontSize: 34, color: "#f7e9ed" }}>
                     Catálogo y pedidos por WhatsApp

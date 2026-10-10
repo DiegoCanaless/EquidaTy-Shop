@@ -1,5 +1,5 @@
-import { fetchCsv, parseCsv } from "./csv";
-import type { Cliente, Detalle, Producto, Variante } from "./types";
+import { fetchCsv, parseCsv, nombrePestana } from "./csv";
+import type { Cliente, Detalle, Producto, Variante, OpcionVariante } from "./types";
 
 
 function slugify(texto: string): string {
@@ -14,6 +14,16 @@ function slugify(texto: string): string {
 
 // Link de Google Drive (compartir) → URL de imagen directa. Otros links, tal cual.
 const RX_ID_DRIVE = /(?:file\/d\/|\/d\/|[?&]id=)([-\w]{25,})/;
+
+// Marca de opción agotada al final: "Marrón (sin stock)" / "Rojo (agotado)".
+// La opción sigue listada, pero no se puede elegir.
+const RX_AGOTADA = /\s*\(\s*(?:sin\s+stock|agotado)\s*\)\s*$/i;
+
+// Valores que cuentan como "sí" en columnas de bandera (ej. `destacado`).
+const SI = new Set(["si", "sí", "x", "1", "true", "yes", "s"]);
+function esSi(valor: string): boolean {
+    return SI.has(valor.trim().toLowerCase());
+}
 
 function normalizarImagen(url: string): string {
     const limpio = url.trim();
@@ -32,7 +42,10 @@ function normalizarImagen(url: string): string {
 
 
 export async function fetchProductos(cliente: Cliente): Promise<Producto[]> {
-    const texto = await fetchCsv(cliente.catalogo.sheetId);
+    const texto = await fetchCsv(
+        cliente.catalogo.sheetId,
+        nombrePestana(cliente.catalogo.rango)
+    );
     if (!texto) return [];
 
     const filas = parseCsv(texto);
@@ -69,6 +82,7 @@ export async function fetchProductos(cliente: Cliente): Promise<Producto[]> {
         .sort((a, b) => Number(a.h.split("_")[1]) - Number(b.h.split("_")[1]))
 
     const productos: Producto[] = [];
+    const idsUsados = new Set<string>();
 
     for (let f = 1; f < filas.length; f++) {
         const fila = filas[f];
@@ -103,13 +117,19 @@ export async function fetchProductos(cliente: Cliente): Promise<Producto[]> {
         const stockN = Number(stockTxt)
 
 
-        // Variantes, columna por grupo
+        // Variantes, columna por grupo. Una opción con "(sin stock)" o
+        // "(agotado)" queda listada pero no se puede elegir.
         const variantes: Variante[] = [];
         for (const { col, etiqueta } of columnasVariante) {
-            const opciones = (fila[col] ?? "")
+            const opciones: OpcionVariante[] = (fila[col] ?? "")
                 .split(",")
                 .map((o) => o.trim())
-                .filter(Boolean);
+                .filter(Boolean)
+                .map((o) => ({
+                    valor: o.replace(RX_AGOTADA, "").trim(),
+                    agotada: RX_AGOTADA.test(o),
+                }))
+                .filter((o) => o.valor);
             if (opciones.length > 0) variantes.push({ etiqueta, opciones });
         }
 
@@ -133,8 +153,20 @@ export async function fetchProductos(cliente: Cliente): Promise<Producto[]> {
 
         const descripcion = celda("descripcion").trim();
 
+        // id único: si el slug ya existe, sufijo -2, -3… (nombres que colapsan)
+        let id = slugify(nombre);
+        if (idsUsados.has(id)) {
+            let n = 2;
+            while (idsUsados.has(`${id}-${n}`)) n++;
+            console.warn(
+                `[productos] fila ${f + 1} (${nombre}): id "${id}" repetido, se usa "${id}-${n}"`
+            );
+            id = `${id}-${n}`;
+        }
+        idsUsados.add(id);
+
         productos.push({
-            id: slugify(nombre),
+            id,
             nombre,
             categoria: celda("categoria").trim() || "Sin categoría",
             precio,
@@ -147,6 +179,7 @@ export async function fetchProductos(cliente: Cliente): Promise<Producto[]> {
             imagenes,
             variantes,
             detalles,
+            destacado: esSi(celda("destacado")),
         });
     }
 
