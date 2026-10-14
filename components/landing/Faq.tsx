@@ -23,7 +23,7 @@ const PREGUNTAS = [
   },
   {
     q: "¿Cómo se paga?",
-    a: "Te mandamos un link de Mercado Pago. Podés ir mes a mes (alta de $20.000 + $15.000 por mes) o prepagar: el año a $180.000 (con el alta bonificada) o 2 años a $350.000 (con 2 meses de regalo).",
+    a: "Te mandamos un link de Mercado Pago. No hay costo de alta: entrás con $10.000 por mes, o prepagás el año a $110.000 (1 mes de regalo) o 2 años a $220.000 (2 meses de regalo).",
   },
   {
     q: "¿Puedo cancelar o pedir reembolso?",

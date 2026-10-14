@@ -10,8 +10,26 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <h1 className="max-w-[22ch] font-display text-[clamp(2.35rem,5.2vw,3.7rem)] leading-[1.07] tracking-[-0.02em] text-tinta">
-              Tu planilla de Excel es{" "}
-              <span className="text-bordo">tu tienda online</span>.
+              Convertí tu planilla de Excel en{" "}
+              <span className="relative inline-block text-bordo">
+                tu tienda online
+                <svg
+                  className="hero-underline"
+                  viewBox="0 0 300 12"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 8C58 2 118 12 178 5s92-1 120 1"
+                    pathLength={1}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={3}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+              .
             </h1>
 
             <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-tenue">
@@ -40,10 +58,7 @@ export default function Hero() {
 
             <p className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-linea pt-6 text-sm text-tenue">
               <span>
-                Alta única{" "}
-                <strong className="font-display text-bordo">
-                  $20.000
-                </strong>
+                Sin costo de alta
               </span>
               <span aria-hidden="true" className="text-linea">
                 ·
@@ -51,7 +66,7 @@ export default function Hero() {
               <span>
                 Mensual{" "}
                 <strong className="font-display text-bordo">
-                  $15.000
+                  $10.000
                 </strong>
               </span>
               <span aria-hidden="true" className="text-linea">

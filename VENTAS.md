@@ -1,7 +1,7 @@
 # Ventas — EquidaTy Shop (E0)
 
 Guion para salir a probar con 5–10 pymes. Objetivo: **validar que paguen
-$20.000 de alta + $15.000/mes**, no cerrar por cerrar.
+$10.000/mes (sin costo de alta)**, no cerrar por cerrar.
 
 ---
 
@@ -82,9 +82,9 @@ No mandes más de 2 seguimientos. Si no contesta, queda para más adelante.
 > una cena por mes, tenés el catálogo online."
 
 **"¿Y Empretienda? Es más barata."**
-> "Sí, sale ~$10.000, pero tiene un panel que tenés que aprender y un checkout
-> online. Nosotros somos al revés: **no aprendés nada** y el pedido te llega
-> por **WhatsApp**, como ya trabajás."
+> "Cuesta lo mismo (~$10.000), pero tiene un panel que tenés que aprender y un
+> checkout online. Nosotros al mismo precio somos al revés: **no aprendés nada**
+> y el pedido te llega por **WhatsApp**, como ya trabajás."
 
 **"¿Por qué no Tiendanube?"**
 > "Tiendanube es genial si vas a escalar y querés mil integraciones — arranca
@@ -107,9 +107,9 @@ No mandes más de 2 seguimientos. Si no contesta, queda para más adelante.
 
 ## 7. La oferta (decirla sin vueltas)
 
-> **Mensual:** alta $20.000 + $15.000/mes. Mes a mes, sin contrato.
-> **Anual:** $180.000 (un pago) — **te bonificamos el alta** ($20.000).
-> **2 años:** $350.000 (un pago) — alta bonificada **+ 2 meses de regalo**.
+> **Mensual:** $10.000/mes. **Sin costo de alta.** Mes a mes, sin contrato.
+> **Anual:** $110.000 (un pago) — **1 mes de regalo** ($9.167 por mes).
+> **2 años:** $220.000 (un pago) — **2 meses de regalo** ($9.167 por mes).
 > **Sin comisiones por venta.**
 >
 > Los planes Anual y 2 años son **un pago único y no son reembolsables** (decíselo
@@ -131,7 +131,8 @@ No mandes más de 2 seguimientos. Si no contesta, queda para más adelante.
 2. Carga sus productos y me pasa el **link de la planilla** (Lector).
 3. Me pasa **logo, colores y banner** (opcional).
 4. Lo doy de alta (`config/clients.json`) y le mando su **URL**.
-5. Cobro el **alta** por Mercado Pago y lo dejo en el **plan mensual**.
+5. Le mando el link del **plan de suscripción** de Mercado Pago ($10.000/mes)
+   y la tienda queda activa.
 
 ---
 
@@ -139,5 +140,5 @@ No mandes más de 2 seguimientos. Si no contesta, queda para más adelante.
 
 - **No inventar** clientes, reseñas ni métricas (todavía no hay).
 - **No prometer** panel ni pagos online (no los tenemos).
-- **No regalar el alta** ni bajar el precio por las dudas: el alta filtra.
+- **No regalar meses** ni bajar el precio por las dudas: el precio filtra.
 - Si 5–10 charlas dicen "no" por precio → revisamos el modelo, no el pitch.

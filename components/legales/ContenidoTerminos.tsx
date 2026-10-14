@@ -61,16 +61,16 @@ export default function ContenidoTerminos() {
                     </h2>
                     <ul className="mt-2 list-disc pl-5">
                         <li>
-                            <strong className="text-tinta">Mensual:</strong> alta de
-                            $20.000 (por única vez) + $15.000 por mes.
+                            <strong className="text-tinta">Mensual:</strong> $10.000
+                            por mes, sin costo de alta.
                         </li>
                         <li>
-                            <strong className="text-tinta">Anual:</strong> $180.000
-                            por 12 meses (alta bonificada), pago único.
+                            <strong className="text-tinta">Anual:</strong> $110.000
+                            por 12 meses (1 mes de regalo), pago único.
                         </li>
                         <li>
-                            <strong className="text-tinta">2 años:</strong> $350.000
-                            (alta bonificada + 2 meses bonificados), pago único.
+                            <strong className="text-tinta">2 años:</strong> $220.000
+                            por 24 meses (2 meses de regalo), pago único.
                         </li>
                     </ul>
                     <p className="mt-2">

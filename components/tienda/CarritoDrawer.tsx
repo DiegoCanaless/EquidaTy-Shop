@@ -5,6 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCarrito, claveItem } from "./carrito-contexto";
 import { formatearPrecio } from "@/lib/tienda/formato";
+import {
+    IconoCarrito,
+    IconoCerrar,
+    IconoMas,
+    IconoMenos,
+} from "@/components/Iconos";
 
 export default function CarritoDrawer({ moneda }: { moneda: string }) {
     const {
@@ -60,24 +66,15 @@ export default function CarritoDrawer({ moneda }: { moneda: string }) {
                         type="button"
                         onClick={cerrar}
                         aria-label="Cerrar"
-                        className="grid h-9 w-9 place-items-center rounded-full text-[var(--c-texto)] hover:bg-black/5"
+                        className="grid h-9 w-9 place-items-center rounded-full text-[var(--c-texto)] transition-colors hover:bg-black/5"
                     >
-                        <svg
-                            viewBox="0 0 24 24"
-                            className="h-5 w-5"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={1.8}
-                            strokeLinecap="round"
-                            aria-hidden="true"
-                        >
-                            <path d="M6 6l12 12M18 6L6 18" />
-                        </svg>
+                        <IconoCerrar className="h-5 w-5" />
                     </button>
                 </header>
 
                 {items.length === 0 ? (
                     <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
+                        <IconoCarrito className="h-9 w-9 text-black/20" />
                         <p className="text-sm text-black/60">Tu carrito está vacío.</p>
                         <Link
                             href={base || "/"}
@@ -131,9 +128,9 @@ export default function CarritoDrawer({ moneda }: { moneda: string }) {
                                                                 item.cantidad - 1
                                                             )
                                                         }
-                                                        className="grid h-7 w-7 place-items-center text-[var(--c-texto)]"
+                                                        className="grid h-7 w-7 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5"
                                                     >
-                                                        −
+                                                        <IconoMenos className="h-3.5 w-3.5" />
                                                     </button>
                                                     <span className="w-6 text-center text-sm tabular-nums text-[var(--c-texto)]">
                                                         {item.cantidad}
@@ -147,9 +144,9 @@ export default function CarritoDrawer({ moneda }: { moneda: string }) {
                                                                 item.cantidad + 1
                                                             )
                                                         }
-                                                        className="grid h-7 w-7 place-items-center text-[var(--c-texto)]"
+                                                        className="grid h-7 w-7 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5"
                                                     >
-                                                        +
+                                                        <IconoMas className="h-3.5 w-3.5" />
                                                     </button>
                                                 </div>
                                                 <button

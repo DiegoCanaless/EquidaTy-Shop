@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCarrito, claveItem } from "./carrito-contexto";
 import { formatearPrecio } from "@/lib/tienda/formato";
-import { IconoWhatsApp } from "@/components/Iconos";
+import { IconoWhatsApp, IconoMas, IconoMenos } from "@/components/Iconos";
 
 export default function CarritoContenido({
     whatsapp,
@@ -99,9 +99,9 @@ export default function CarritoContenido({
                                             onClick={() =>
                                                 cambiarCantidad(clave, item.cantidad - 1)
                                             }
-                                            className="grid h-8 w-8 place-items-center text-[var(--c-texto)]"
+                                            className="grid h-8 w-8 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5"
                                         >
-                                            −
+                                            <IconoMenos className="h-4 w-4" />
                                         </button>
                                         <span className="w-7 text-center text-sm tabular-nums text-[var(--c-texto)]">
                                             {item.cantidad}
@@ -112,9 +112,9 @@ export default function CarritoContenido({
                                             onClick={() =>
                                                 cambiarCantidad(clave, item.cantidad + 1)
                                             }
-                                            className="grid h-8 w-8 place-items-center text-[var(--c-texto)]"
+                                            className="grid h-8 w-8 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5"
                                         >
-                                            +
+                                            <IconoMas className="h-4 w-4" />
                                         </button>
                                     </div>
                                     <button

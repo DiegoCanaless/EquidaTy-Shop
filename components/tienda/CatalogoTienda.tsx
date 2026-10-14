@@ -6,19 +6,31 @@ import type { Producto } from "@/lib/tienda/types";
 
 type Orden = "relevancia" | "precio-asc" | "precio-desc";
 
+// Cuántos productos se muestran antes del "Ver más".
+const POR_PAGINA = 24;
+
 export default function CatalogoTienda({
     productos,
     base,
     moneda,
+    categoriaInicial,
 }: {
     productos: Producto[];
     base: string;
     moneda: string;
+    categoriaInicial?: string;
 }) {
     const [busqueda, setBusqueda] = useState("");
-    const [categoria, setCategoria] = useState("");
+    const [categoria, setCategoria] = useState(categoriaInicial ?? "");
     const [orden, setOrden] = useState<Orden>("relevancia");
     const [soloOfertas, setSoloOfertas] = useState(false);
+    const [visibles, setVisibles] = useState(POR_PAGINA);
+
+    // Reinicia la paginación (cada cambio de filtro vuelve a la 1ª "página").
+    function filtrar(cambio: () => void) {
+        cambio();
+        setVisibles(POR_PAGINA);
+    }
 
     const categorias = useMemo(() => {
         const set = new Set<string>();
@@ -33,7 +45,11 @@ export default function CatalogoTienda({
             if (categoria && p.categoria !== categoria) return false;
             if (
                 soloOfertas &&
-                !(p.precioAntes !== undefined && p.precioAntes > p.precio)
+                !(
+                    p.precioAntes !== undefined &&
+                    p.precioAntes > p.precio &&
+                    p.stock > 0
+                )
             )
                 return false;
             if (q && !p.nombre.toLowerCase().includes(q)) return false;
@@ -62,7 +78,9 @@ export default function CatalogoTienda({
                     <input
                         type="search"
                         value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
+                        onChange={(e) =>
+                            filtrar(() => setBusqueda(e.target.value))
+                        }
                         placeholder="Buscar productos…"
                         aria-label="Buscar productos"
                         className="min-w-[11rem] flex-1 rounded-full border border-black/15 bg-white px-4 py-2 text-sm text-[var(--c-texto)]"
@@ -70,7 +88,9 @@ export default function CatalogoTienda({
 
                     <select
                         value={orden}
-                        onChange={(e) => setOrden(e.target.value as Orden)}
+                        onChange={(e) =>
+                            filtrar(() => setOrden(e.target.value as Orden))
+                        }
                         aria-label="Ordenar por"
                         className="rounded-full border border-black/15 bg-white px-3 py-2 text-sm text-[var(--c-texto)]"
                     >
@@ -81,7 +101,7 @@ export default function CatalogoTienda({
 
                     <button
                         type="button"
-                        onClick={() => setSoloOfertas((v) => !v)}
+                        onClick={() => filtrar(() => setSoloOfertas((v) => !v))}
                         aria-pressed={soloOfertas}
                         className={`rounded-full border px-4 py-2 text-sm transition-colors ${
                             soloOfertas
@@ -94,14 +114,17 @@ export default function CatalogoTienda({
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
-                    <Chip activa={categoria === ""} onClick={() => setCategoria("")}>
+                    <Chip
+                        activa={categoria === ""}
+                        onClick={() => filtrar(() => setCategoria(""))}
+                    >
                         Todas
                     </Chip>
                     {categorias.map((c) => (
                         <Chip
                             key={c}
                             activa={categoria === c}
-                            onClick={() => setCategoria(c)}
+                            onClick={() => filtrar(() => setCategoria(c))}
                         >
                             {c}
                         </Chip>
@@ -118,16 +141,30 @@ export default function CatalogoTienda({
                     No encontramos productos con esos filtros.
                 </p>
             ) : (
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-                    {filtrados.map((p) => (
-                        <ProductoCard
-                            key={p.id}
-                            producto={p}
-                            base={base}
-                            moneda={moneda}
-                        />
-                    ))}
-                </div>
+                <>
+                    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                        {filtrados.slice(0, visibles).map((p) => (
+                            <ProductoCard
+                                key={p.id}
+                                producto={p}
+                                base={base}
+                                moneda={moneda}
+                            />
+                        ))}
+                    </div>
+
+                    {visibles < filtrados.length && (
+                        <div className="mt-6 flex justify-center">
+                            <button
+                                type="button"
+                                onClick={() => setVisibles((v) => v + POR_PAGINA)}
+                                className="rounded-full border border-black/15 px-6 py-3 text-sm text-[var(--c-texto)] transition-colors hover:border-black/30"
+                            >
+                                Ver más ({filtrados.length - visibles})
+                            </button>
+                        </div>
+                    )}
+                </>
             )}
         </section>
     );

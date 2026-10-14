@@ -3,7 +3,15 @@ import path from "node:path"
 
 const URL_EXPORT = "https://docs.google.com/spreadsheets/d";
 
-export async function fetchCsv(sheetId: string): Promise<string> {
+/**
+ * "Productos!A1:Z1000" → "Productos"; "Productos" → "Productos"; "" → "".
+ * La pestaña de la config (`rango`) es la que se le pide a Google por nombre.
+ */
+export function nombrePestana(rango: string): string {
+    return (rango.split("!")[0] ?? "").trim();
+}
+
+export async function fetchCsv(sheetId: string, pestana?: string): Promise<string> {
 
     // Modo E2E
     const fixture = process.env.E2E_CSV_FIXTURE;
@@ -19,7 +27,11 @@ export async function fetchCsv(sheetId: string): Promise<string> {
 
 
 
-    const url = `${URL_EXPORT}/${sheetId}/export?format=csv&gid=0`;
+    // Con nombre de pestaña → export por nombre (mismo formato fiable que gid).
+    // Google cae a la primera hoja si el nombre no existe (o si no se pasa).
+    const url = pestana
+        ? `${URL_EXPORT}/${sheetId}/export?format=csv&sheet=${encodeURIComponent(pestana)}`
+        : `${URL_EXPORT}/${sheetId}/export?format=csv&gid=0`;
 
 
     try {

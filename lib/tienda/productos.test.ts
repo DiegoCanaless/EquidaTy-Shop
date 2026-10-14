@@ -68,7 +68,13 @@ describe("fetchProductos", () => {
         expect(p.stock).toBe(3);
         expect(p.descripcion).toBe("Hecho a mano");
         expect(p.variantes).toEqual([
-            { etiqueta: "Color", opciones: ["Marrón", "Natural"] },
+            {
+                etiqueta: "Color",
+                opciones: [
+                    { valor: "Marrón", agotada: false },
+                    { valor: "Natural", agotada: false },
+                ],
+            },
         ]);
         expect(p.detalles).toEqual([
             { etiqueta: "Material", valor: "Algarrobo" },
@@ -76,6 +82,27 @@ describe("fetchProductos", () => {
         expect(p.imagenes).toEqual([
             "https://lh3.googleusercontent.com/d/abc=w1200",
             "https://ejemplo.com/f2.jpg",
+        ]);
+    });
+
+    it("marca opciones (sin stock)/(agotado) y limpia el texto", async () => {
+        fetchCsvMock.mockResolvedValue(
+            [
+                "nombre,precio,variante_1: Color",
+                'Mate,10000,"Negro, Marrón (sin stock), Rojo (Agotado)"',
+            ].join("\n")
+        );
+
+        const [p] = await fetchProductos(cliente);
+        expect(p.variantes).toEqual([
+            {
+                etiqueta: "Color",
+                opciones: [
+                    { valor: "Negro", agotada: false },
+                    { valor: "Marrón", agotada: true },
+                    { valor: "Rojo", agotada: true },
+                ],
+            },
         ]);
     });
 
@@ -134,6 +161,38 @@ describe("fetchProductos", () => {
         const [p] = await fetchProductos(cliente);
         expect(p.categoria).toBe("Sin categoría");
         expect(p.stock).toBe(0);
+    });
+
+    it("parsea la columna destacado (si/x/1)", async () => {
+        fetchCsvMock.mockResolvedValue(
+            [
+                "nombre,precio,destacado",
+                "Mate,10000,Sí",
+                "Bolso,20000,",
+                "Gorra,5000,x",
+            ].join("\n")
+        );
+
+        const productos = await fetchProductos(cliente);
+        expect(productos.map((p) => p.destacado)).toEqual([true, false, true]);
+    });
+
+    it("deduplica el id cuando dos nombres colapsan al mismo slug", async () => {
+        fetchCsvMock.mockResolvedValue(
+            [
+                "nombre,precio",
+                "Mate Imperial,10000",
+                "Mate  Imperial,12000",
+                "MATE IMPERIAL,13000",
+            ].join("\n")
+        );
+
+        const productos = await fetchProductos(cliente);
+        expect(productos.map((p) => p.id)).toEqual([
+            "mate-imperial",
+            "mate-imperial-2",
+            "mate-imperial-3",
+        ]);
     });
 });
 

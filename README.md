@@ -44,7 +44,8 @@ app/                    rutas
   page.tsx              landing (material de venta)
   [slug]/               tienda del cliente
     layout.tsx          CSS vars del cliente + header + footer + carrito
-    page.tsx            hero/cabecera + grilla
+    page.tsx            home curado (destacados, ofertas, categorías, sucursales)
+    catalogo/           catálogo completo (buscador + filtros + "Ver más")
     producto/[id]/      detalle de producto (galería + variantes + carrito)
     carrito/            carrito + checkout por WhatsApp
     error.tsx           error de tienda
@@ -84,6 +85,20 @@ plantilla/              plantilla CSV del catálogo
      },
      "catalogo": { "sheetId": "...", "rango": "Productos!A1:Z1000" },
      "whatsapp": "5492612430088",
+     "info": {
+       "descripcion": "Mates hechos a mano en Mendoza.",
+       "email": "hola@matesartesanales.com",
+       "telefono": "+54 9 261 243-0088",
+       "envios": "Enviamos a todo el país.",
+       "pagos": "Efectivo, transferencia y Mercado Pago."
+     },
+     "sucursales": [
+       {
+         "nombre": "Local Centro",
+         "direccion": "Av. San Martín 1234, Mendoza",
+         "horarios": "Lun a Sáb, 10 a 19 hs"
+       }
+     ],
      "redes": { "instagram": "..." }
    }
    ```
@@ -126,3 +141,17 @@ El **formato de la planilla** (columnas, variantes vs detalles, imágenes) está
   como *Cualquiera con el link*); el parser los normaliza solo.
 - Un producto puede tener **1 a 4 fotos** (`imagen_1..imagen_4`), **variantes**
   (lo que el cliente elige) y **detalles** (datos fijos).
+- El bloque `info` (footer: descripción, contacto, envíos, pagos) y `sucursales`
+  (sección "Dónde encontrarnos" con mapa de Google) son **opcionales**. Una
+  tienda 100% online omite `sucursales` y la sección no aparece.
+- Una variante con `(sin stock)` o `(agotado)` queda listada pero no se puede
+  elegir (útil para cortes temporales de una opción).
+- Las **categorías** del home salen solas de la planilla, con la **primera foto
+  de un producto** de esa categoría como imagen principal. Para curarlas (orden,
+  nombre, imagen o descripción propios) se agrega un array `categorias` en
+  `clients.json`:
+  ```json
+  "categorias": [
+    { "nombre": "Mates", "imagen": "/clients/x/categorias/mates.jpg", "descripcion": "Acero y madera" }
+  ]
+  ```

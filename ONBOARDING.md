@@ -87,10 +87,17 @@ puede editar nada) y pasame el link. Ahí lo conectamos a tu tienda.
   izquierda a derecha.
 - Orden de columnas recomendado:
   `nombre · categoria · precio · precio_antes · stock · variante_1..4 ·
-  detalle_1..4 · imagen_1..4 · descripcion`.
+  detalle_1..4 · imagen_1..4 · descripcion · destacado`.
+- **Destacado (opcional):** columna `destacado` con `Sí`/`x`/`1` en los
+  productos que querés que aparezcan en la sección **Destacados** del inicio.
+  Los que no marques siguen estando en el catálogo completo (`/catalogo`).
 - **Variante vs detalle:** `variante_N` = el cliente **elige** (chips en la
   web); `detalle_N` = **dato fijo** del producto (línea de especificación, no
   se elige). El detalle es **texto único**: no se separa por comas.
+- **Opción sin stock (temporal):** si te quedás sin una opción pero querés
+  seguir mostrándola, agregale `(sin stock)` al final (ej.
+  `Marrón (sin stock)`). La opción queda visible pero tachada y no se puede
+  elegir; cuando vuelve el stock, borrás la marca. También acepta `(agotado)`.
 - Imágenes: `imagen_1..N` (se ordenan por el número); si no hay ninguna, se
   usa la columna vieja `imagen`. Las celdas vacías se ignoran (un producto
   puede tener 1, 2, 3 o 4 fotos). Los links de **Google Drive** (de "compartir")

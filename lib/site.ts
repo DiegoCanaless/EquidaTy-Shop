@@ -13,5 +13,7 @@ export const WA = wa();
 /** Teléfono visible para humanos. */
 export const WA_VISIBLE = "+54 9 261 243-0088";
 
-/** Sitio de la agencia (para links absolutos desde dominios de clientes). */
-export const SITIO_URL = "https://equidaty.shop";
+/** URL pública del sitio (links absolutos, metadata). Se puede override con
+    NEXT_PUBLIC_SITE_URL cuando el dominio propio esté listo. */
+export const SITIO_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://equida-ty-shop.vercel.app";

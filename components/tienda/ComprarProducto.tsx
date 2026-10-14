@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { formatearPrecio } from "@/lib/tienda/formato";
-import { IconoWhatsApp, IconoCarrito } from "@/components/Iconos";
+import { IconoWhatsApp, IconoCarrito, IconoMas, IconoMenos } from "@/components/Iconos";
 import { useCarrito } from "./carrito-contexto";
 import type { Producto } from "@/lib/tienda/types";
 
@@ -21,9 +21,16 @@ export default function ComprarProducto({
     const [seleccion, setSeleccion] = useState<Record<string, string>>({});
     const [cantidad, setCantidad] = useState(1);
 
-    const agotado = producto.stock === 0;
+    // Si algún grupo se quedó sin opciones disponibles, el producto no se puede
+    // comprar (aunque tenga stock). `faltante` solo mira grupos elegibles.
+    const sinOpciones = producto.variantes.some((v) =>
+        v.opciones.every((o) => o.agotada)
+    );
+    const agotado = producto.stock === 0 || sinOpciones;
     const maxCantidad = producto.stock > 0 ? producto.stock : 1;
-    const faltante = producto.variantes.find((v) => !seleccion[v.etiqueta]);
+    const faltante = producto.variantes.find(
+        (v) => v.opciones.some((o) => !o.agotada) && !seleccion[v.etiqueta]
+    );
 
     function elegir(etiqueta: string, opcion: string) {
         setSeleccion((s) => ({ ...s, [etiqueta]: opcion }));
@@ -84,20 +91,27 @@ export default function ComprarProducto({
                     </p>
                     <div className="flex flex-wrap gap-2">
                         {variante.opciones.map((opcion) => {
-                            const activa = seleccion[variante.etiqueta] === opcion;
+                            const activa =
+                                seleccion[variante.etiqueta] === opcion.valor;
                             return (
                                 <button
-                                    key={opcion}
+                                    key={opcion.valor}
                                     type="button"
-                                    onClick={() => elegir(variante.etiqueta, opcion)}
+                                    onClick={() =>
+                                        elegir(variante.etiqueta, opcion.valor)
+                                    }
                                     aria-pressed={activa}
+                                    disabled={opcion.agotada}
+                                    title={opcion.agotada ? "Sin stock" : undefined}
                                     className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
-                                        activa
+                                        opcion.agotada
+                                            ? "cursor-not-allowed border-black/10 text-black/30 line-through"
+                                            : activa
                                             ? "border-transparent bg-[var(--c-primario)] text-white"
                                             : "border-black/15 text-[var(--c-texto)] hover:border-black/30"
                                     }`}
                                 >
-                                    {opcion}
+                                    {opcion.valor}
                                 </button>
                             );
                         })}
@@ -112,9 +126,9 @@ export default function ComprarProducto({
                         aria-label="Restar"
                         onClick={() => setCantidad((c) => Math.max(1, c - 1))}
                         disabled={agotado}
-                        className="grid h-10 w-10 place-items-center text-lg text-[var(--c-texto)]"
+                        className="grid h-10 w-10 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5 disabled:opacity-40"
                     >
-                        −
+                        <IconoMenos className="h-4 w-4" />
                     </button>
                     <span className="w-8 text-center tabular-nums text-[var(--c-texto)]">
                         {cantidad}
@@ -124,9 +138,9 @@ export default function ComprarProducto({
                         aria-label="Sumar"
                         onClick={() => setCantidad((c) => Math.min(maxCantidad, c + 1))}
                         disabled={agotado}
-                        className="grid h-10 w-10 place-items-center text-lg text-[var(--c-texto)]"
+                        className="grid h-10 w-10 place-items-center text-[var(--c-texto)] transition-colors hover:bg-black/5 disabled:opacity-40"
                     >
-                        +
+                        <IconoMas className="h-4 w-4" />
                     </button>
                 </div>
 
