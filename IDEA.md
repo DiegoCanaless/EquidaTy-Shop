@@ -5,14 +5,15 @@
 Producto de Equidaty: el cliente copia nuestra plantilla de Google Sheets a su
 cuenta, carga su catálogo (la plantilla trae títulos claros y un producto de
 ejemplo que borra) y su tienda queda online con URL propia, sync ~60s, logo,
-colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad —
-**no es SaaS self-serve**: yo doy de alta cada cliente a mano (config + dominio).
+colores, banner y botón de WhatsApp. Servicio con mensualidad, **sin costo de
+alta** — **no es SaaS self-serve**: yo doy de alta cada cliente a mano (config +
+dominio).
 
 ## Modelo de negocio
 
-- **Mensual**: alta $20.000 ARS + $15.000/mes (mes a mes, sin contrato).
-- **Anual**: $180.000 (un pago; **alta bonificada** = ahorra $20k).
-- **2 años**: $350.000 (un pago; **2 meses de regalo** + alta bonificada = ahorra $30k).
+- **Mensual**: $10.000/mes (sin costo de alta; mes a mes, sin contrato).
+- **Anual**: $110.000 (un pago; **1 mes de regalo** = $9.167/mes).
+- **2 años**: $220.000 (un pago; **2 meses de regalo** vs mensual = $9.167/mes).
 - **Prepagos (Anual y 2 años): un pago único y SIN reembolsos** (el cliente debe
   saberlo). El mensual se da de baja cuando quiera.
 - **Cobro**: **Plan de Suscripción de la app de Mercado Pago** — creás el plan
@@ -21,8 +22,8 @@ colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad �
   **Sin panel ni botón en la web**: el control de pagos es la app de MP.
   Si algún día hace falta, la API + webhook queda para E4.
 - **Costo fijo**: Cloudflare Workers Paid $5 USD/mes ≈ $93k/año
-- **La cuenta** (alta $20k + $15k×12 = $200k/año por cliente; infra Cloudflare
-  $93k/año): 1 cliente deja ≈ **+$107k/año**; 2 clientes ≈ **+$307k/año**. Ojo:
+- **La cuenta** ($10k×12 = $120k/año por cliente; infra Cloudflare $93k/año):
+  1 cliente deja ≈ **+$27k/año**; 2 clientes ≈ **+$147k/año**. Ojo:
   con Vercel Pro ($20 USD/mes) 2 clientes apenas empataban — por eso Cloudflare.
 - **MP comisión**: ~5-7% + IVA por cobro online (elegir acreditación a 10-18
   días para bajar de 6.29% a 4.39%/3.39%)
@@ -61,7 +62,7 @@ colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad �
 ## Etapas
 
 1. **E0 · Validar**: copy del pitch + 5-10 pymes charladas
-   (¿usan Sheets? ¿pagarían $20k de alta + $15.000/mes?)
+   (¿usan Sheets? ¿pagarían $10.000/mes sin costo de alta?)
 2. **E1 · Construir el producto completo**: catálogo desde CSV, slug,
    colores/logo/banner, buscador, carrito → WhatsApp (~1 semana)
 3. **E2 · Beta** con los testers (yo les paso la plantilla para que la copien y les doy de alta la tienda)
@@ -73,7 +74,7 @@ colores, banner y botón de WhatsApp. Servicio con alta cobrada + mensualidad �
 
 | | Empretienda | Tiendanube | EquidaTy Shop |
 |---|---|---|---|
-| Precio | ~$10k/mes, alta $0 | Desde $26.999/mes (+ comisión) | **$20k alta + $15k/mes** |
+| Precio | ~$10k/mes, alta $0 | Desde $26.999/mes (+ comisión) | **$10k/mes, alta $0** |
 | Panel | Sí | Sí | **No: tu planilla es el panel** |
 | Checkout | Online (Mercado Pago) | Online (Mercado Pago) | **Por WhatsApp** |
 | Carga del catálogo | Panel | Panel | **Tu Google Sheet** |

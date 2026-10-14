@@ -26,8 +26,8 @@ La tienda online que nace de tu planilla, para **vendedores que ya trabajan con
 una planilla y venden por WhatsApp**. No es SaaS self-serve: el cliente copia
 nuestra plantilla, carga su catálogo (plantilla + videos) y nosotros damos de
 alta la tienda. **Sin panel: tu planilla es el panel** — no aprendés ninguna
-plataforma y el pedido te llega por WhatsApp. Precio: alta **$20.000** +
-**$15.000/mes** (mes a mes), contra Empretienda (~$10k pero **con panel** y
+plataforma y el pedido te llega por WhatsApp. Precio: **$10.000/mes** sin
+costo de alta (mes a mes), contra Empretienda (~$10k pero **con panel** y
 checkout online), Tiendanube (desde $26.999 + comisión) y SpreadSimple (inglés,
 USD).
 
@@ -79,8 +79,8 @@ USD).
   cliente. **No hay panel** (ese es el diferencial).
 - Sin base de datos, sin auth, sin pagos online en la web.
 - Precios confirmados y **visibles en la landing** (decisión del dueño):
-  **Mensual** alta $20.000 + $15.000/mes (mes a mes, sin contrato) · **Anual**
-  $180.000 un pago (alta bonificada) · **2 años** $350.000 un pago (2 meses de
+  **Mensual** $10.000/mes sin costo de alta (mes a mes, sin contrato) · **Anual**
+  $110.000 un pago (1 mes de regalo) · **2 años** $220.000 un pago (2 meses de
   regalo). Los **prepagos son un pago único y NO reembolsables** (se comunica al
   cliente en la landing). La landing **no** muestra equivalente en USD.
 

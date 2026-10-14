@@ -58,10 +58,7 @@ export default function Hero() {
 
             <p className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-linea pt-6 text-sm text-tenue">
               <span>
-                Alta única{" "}
-                <strong className="font-display text-bordo">
-                  $20.000
-                </strong>
+                Sin costo de alta
               </span>
               <span aria-hidden="true" className="text-linea">
                 ·
@@ -69,7 +66,7 @@ export default function Hero() {
               <span>
                 Mensual{" "}
                 <strong className="font-display text-bordo">
-                  $15.000
+                  $10.000
                 </strong>
               </span>
               <span aria-hidden="true" className="text-linea">

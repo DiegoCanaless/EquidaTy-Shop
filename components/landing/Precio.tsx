@@ -13,25 +13,25 @@ type Plan = {
 const PLANES: Plan[] = [
   {
     nombre: "Mensual",
-    precio: "$15.000",
+    precio: "$10.000",
     unidad: "/mes",
-    alta: "Alta única $20.000",
-    detalle: "La alta se paga una vez y después es mes a mes, sin contrato.",
+    alta: "Sin costo de alta",
+    detalle: "Arrancás hoy mismo. Mes a mes, sin contrato y sin carga inicial.",
   },
   {
     nombre: "Anual",
-    precio: "$180.000",
+    precio: "$110.000",
     unidad: "/año",
-    alta: "Alta bonificada",
-    detalle: "Un pago. Te bonificamos el alta ($20.000). Equivale a $15.000 por mes.",
+    alta: "1 mes de regalo",
+    detalle: "Un pago. Equivale a $9.167 por mes contra $10.000 del plan mensual.",
     destacado: true,
   },
   {
     nombre: "2 años",
-    precio: "$350.000",
+    precio: "$220.000",
     unidad: "/2 años",
     alta: "2 meses de regalo",
-    detalle: "Un pago. Alta bonificada + 2 meses sin cargo. Equivale a $14.583 por mes.",
+    detalle: "Un pago por 24 meses. Equivale a $9.167 por mes.",
   },
 ];
 

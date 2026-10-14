@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITIO_URL),
   title: "EquidaTy Shop — Convertí tu planilla de Excel en tu tienda online",
   description:
-    "Convertimos tu Google Sheet o Excel en una tienda online con carrito que cierra por WhatsApp. Alta única $20.000 y $15.000 por mes, sin comisiones por venta.",
+    "Convertimos tu Google Sheet o Excel en una tienda online con carrito que cierra por WhatsApp. Sin costo de alta, $10.000 por mes, sin comisiones por venta.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
