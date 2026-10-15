@@ -1,5 +1,5 @@
-nombre,categoria,precio,precio_antes,stock,variante_1:Color,detalle_1:Material,descripcion,destacado
-Mate Imperial,Mates,18000,22000,3,"Marrón,Natural",Algarrobo,Hecho a mano uno por uno,Sí
-Mate Chico,Mates,12000,,,,,Un clásico para el día a día,
-Guampa Norte,Norte,25000,30000,0,,,,Agotada por ahora,
-Remera Algodón,Indumentaria,9000,,10,,,Algodón peinado 100%,Sí
+nombre,categoria,precio,precio_antes,stock,variante_1:Color,detalle_1:Material,descripcion,imagen_1,destacado
+Mate Imperial,Mates,18000,22000,3,"Marrón,Natural",Algarrobo,Hecho a mano uno por uno,https://drive.google.com/file/d/1a2b3c4d5e6f7g8h9i0jklmnop/view?usp=drive_link,Sí
+Mate Chico,Mates,12000,,,,,Un clásico para el día a día,,
+Guampa Norte,Norte,25000,30000,0,,,,Agotada por ahora,,
+Remera Algodón,Indumentaria,9000,,10,,,Algodón peinado 100%,,Sí

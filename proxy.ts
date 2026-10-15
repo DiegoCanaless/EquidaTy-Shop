@@ -40,5 +40,7 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)"],
+    // `/api` queda afuera: si un cliente tiene dominio propio, este proxy
+    // reescribe todo a `/{slug}/...` y rompería `/api/img` (las fotos).
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
 };

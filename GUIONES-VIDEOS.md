@@ -75,10 +75,11 @@ más: que se entienda y se vea simple.
 5. Cierre: *"Último video: cómo me compartís la planilla y los errores que hay
    que evitar."*
 
-> Nota para nosotros: el parser **normaliza los links de Drive** (convierte el
-> link de "compartir" en URL directa `lh3.googleusercontent.com/d/<id>`). El
-> archivo tiene que ser "cualquiera con el link". Si a futuro molesta, evaluamos
-> un subidor propio (Cloudflare R2).
+> Nota para nosotros: el parser **normaliza los links de Drive** y los sirve por
+> nuestro proxy (`/api/img`), que baja la foto del lado del servidor (el navegador
+> no puede pedirla directo a Google: Chrome la bloquea por ORB en `localhost`). El
+> archivo tiene que ser **"cualquiera con el link"**. Si a futuro molesta,
+> evaluamos un subidor propio (Cloudflare R2).
 
 ---
 

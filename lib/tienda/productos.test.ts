@@ -106,7 +106,7 @@ describe("fetchProductos", () => {
         ]);
     });
 
-    it("convierte link de Google Drive en imagen directa", async () => {
+    it("manda el link de Google Drive al proxy de imágenes", async () => {
         fetchCsvMock.mockResolvedValue(
             [
                 HEADER,
@@ -116,7 +116,7 @@ describe("fetchProductos", () => {
 
         const [p] = await fetchProductos(cliente);
         expect(p.imagenes[0]).toBe(
-            "https://lh3.googleusercontent.com/d/1a2b3c4d5e6f7g8h9i0jklmnop=w1200"
+            "/api/img?id=1a2b3c4d5e6f7g8h9i0jklmnop&w=1200"
         );
     });
 

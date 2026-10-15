@@ -1,4 +1,5 @@
 import { fetchCsv, parseCsv, nombrePestana } from "./csv";
+import { normalizarImagen } from "./imagenes";
 import type { Cliente, Detalle, Producto, Variante, OpcionVariante } from "./types";
 
 
@@ -12,9 +13,6 @@ function slugify(texto: string): string {
 }
 
 
-// Link de Google Drive (compartir) → URL de imagen directa. Otros links, tal cual.
-const RX_ID_DRIVE = /(?:file\/d\/|\/d\/|[?&]id=)([-\w]{25,})/;
-
 // Marca de opción agotada al final: "Marrón (sin stock)" / "Rojo (agotado)".
 // La opción sigue listada, pero no se puede elegir.
 const RX_AGOTADA = /\s*\(\s*(?:sin\s+stock|agotado)\s*\)\s*$/i;
@@ -23,20 +21,6 @@ const RX_AGOTADA = /\s*\(\s*(?:sin\s+stock|agotado)\s*\)\s*$/i;
 const SI = new Set(["si", "sí", "x", "1", "true", "yes", "s"]);
 function esSi(valor: string): boolean {
     return SI.has(valor.trim().toLowerCase());
-}
-
-function normalizarImagen(url: string): string {
-    const limpio = url.trim();
-    if (!limpio) return "";
-    if (limpio.includes("lh3.googleusercontent.com")) return limpio;
-    if (
-        limpio.includes("drive.google.com") ||
-        limpio.includes("docs.google.com")
-    ) {
-        const match = limpio.match(RX_ID_DRIVE);
-        if (match) return `https://lh3.googleusercontent.com/d/${match[1]}=w1200`;
-    }
-    return limpio;
 }
 
 
