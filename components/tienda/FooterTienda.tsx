@@ -27,6 +27,11 @@ export default function FooterTienda({
     const { nombre, marca, whatsapp, info, sucursales, redes } = cliente;
     const anio = new Date().getFullYear();
 
+    // Sobre fondo claro se prefiere la variante sólida del logo si existe.
+    const logoFooter = logoExiste(marca.logoSolido)
+        ? marca.logoSolido
+        : marca.logo;
+
     // Los legales son de la agencia, pero se muestran dentro de la tienda
     // (mismo dominio): el path va después de la base.
     const legal = (ruta: string) => `${base}/${ruta}`;
@@ -50,9 +55,9 @@ export default function FooterTienda({
                     {/* Marca */}
                     <div className="flex flex-col gap-3">
                         <Link href={base || "/"} className="flex items-center gap-3">
-                            {logoExiste(marca.logo) ? (
+                            {logoExiste(logoFooter) ? (
                                 <Image
-                                    src={marca.logo}
+                                    src={logoFooter}
                                     alt={nombre}
                                     width={1600}
                                     height={576}

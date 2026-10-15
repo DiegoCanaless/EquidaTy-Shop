@@ -68,6 +68,21 @@ export interface Cliente {
     moneda: string;
     marca: {
         logo?: string;
+        /**
+         * Variante del logo para **fondos claros** (header sólido y footer). Si
+         * no está, se usa `logo` con `mix-blend-multiply` (pensado para logos
+         * oscuros). Se puede generar con `scripts/logo-a-negro.mjs`.
+         */
+        logoSolido?: string;
+        /**
+         * Cómo mostrar `logo` sobre el banner del home: `"blanco"` (default;
+         * fuerza el logo a blanco, para logos oscuros) u `"original"` (lo usa
+         * tal cual, para logos que ya son claros, ej. blanco + dorado).
+         *
+         * Se declara `string` a propósito: un union literal obligaría a castear
+         * el JSON en `lib/clients.ts` y se perdería el chequeo de la config.
+         */
+        logoEnBanner?: string;
         colores: {
             primario: string;
             acento: string;

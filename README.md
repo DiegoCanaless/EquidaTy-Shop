@@ -103,6 +103,19 @@ plantilla/              plantilla CSV del catálogo
    }
    ```
 
+   El **logo** se pinta distinto según el estado del header (transparente sobre
+   el banner del home / sólido al scrollear). Dos campos **opcionales** para
+   ajustarlo cuando un solo archivo no alcanza:
+
+   - **`logoSolido`** — variante del logo para **fondos claros** (header sólido y
+     footer). Ej: `/clients/x/logo-oscuro.webp`.
+   - **`logoEnBanner`** — `"blanco"` (default: fuerza el logo a blanco sobre el
+     banner, pensado para **logos oscuros**) o `"original"` (lo muestra tal cual,
+     para logos que ya son claros, ej. blanco + dorado con contorno).
+
+   Sin estos campos, un logo oscuro funciona solo. Para generar la variante
+   oscura de un logo claro: `node scripts/logo-a-negro.mjs <entrada> <salida>`.
+
 3. Push → la tienda queda en `equidaty.shop/{slug}` (o en su **dominio propio** si
    tiene `dominio`).
 
@@ -126,6 +139,7 @@ El **formato de la planilla** (columnas, variantes vs detalles, imágenes) está
 | `npm start` | Servir el build |
 | `npm run lint` | ESLint |
 | `npx --yes tsx scripts/test-productos.ts` | Smoke test del parser (baja los Sheets y muestra cuántos productos leyó) |
+| `node scripts/logo-a-negro.mjs <entrada> <salida>` | Variante oscura de un logo claro (letras negras, conserva los colores) |
 
 ## Documentación
 
@@ -138,7 +152,9 @@ El **formato de la planilla** (columnas, variantes vs detalles, imágenes) está
 ## Notas
 
 - Las **fotos** de producto se pegan como links de **Google Drive** (compartidos
-  como *Cualquiera con el link*); el parser los normaliza solo.
+  como *Cualquiera con el link*); el parser los normaliza solo y los sirve por
+  **`/api/img`** (proxy propio: el navegador no puede pedirlos directo a Google,
+  Chrome los bloquea por ORB cuando el sitio corre en `localhost`).
 - Un producto puede tener **1 a 4 fotos** (`imagen_1..imagen_4`), **variantes**
   (lo que el cliente elige) y **detalles** (datos fijos).
 - El bloque `info` (footer: descripción, contacto, envíos, pagos) y `sucursales`

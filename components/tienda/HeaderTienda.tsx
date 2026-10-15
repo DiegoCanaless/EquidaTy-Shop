@@ -6,16 +6,30 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { IconoWhatsApp } from "@/components/Iconos";
 import BotonCarrito from "@/components/tienda/BotonCarrito";
+import {
+    logoSegunEstado,
+    tratamientoLogo,
+    type TratamientoLogo,
+} from "@/lib/tienda/logo-estilo";
 import type { Cliente } from "@/lib/tienda/types";
+
+// Clases Tailwind por tratamiento del logo (se animan con transition-[filter]).
+const CLASES_LOGO: Record<TratamientoLogo, string> = {
+    blanco: "[filter:brightness(0)_invert(1)]",
+    normal: "",
+    multiply: "mix-blend-multiply",
+};
 
 export default function HeaderTienda({
     cliente,
     base,
     logo,
+    logoSolido,
 }: {
     cliente: Cliente;
     base: string;
     logo?: string;
+    logoSolido?: string;
 }) {
     const { nombre, marca, whatsapp, redes, sucursales } = cliente;
     const haySucursales = !!sucursales && sucursales.length > 0;
@@ -37,6 +51,19 @@ export default function HeaderTienda({
     const flotante = enHome && tieneBanner && !solido;
     const tinta = flotante ? "text-white" : "text-[var(--c-texto)]";
 
+    // Logo según el estado (ver `lib/tienda/logo-estilo.ts`): sobre el banner se
+    // fuerza a blanco salvo `logoEnBanner: "original"`; en el header sólido va
+    // `logoSolido` si existe.
+    const srcLogo = logoSegunEstado(logo, logoSolido, flotante);
+    const claseLogo =
+        CLASES_LOGO[
+            tratamientoLogo({
+                flotante,
+                logoEnBanner: marca.logoEnBanner,
+                logoSolido,
+            })
+        ];
+
     return (
         <header
             className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
@@ -45,17 +72,13 @@ export default function HeaderTienda({
         >
             <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
                 <Link href={base || "/"} className="flex items-center gap-3">
-                    {logo ? (
+                    {srcLogo ? (
                         <Image
-                            src={logo}
+                            src={srcLogo}
                             alt={nombre}
                             width={1600}
                             height={576}
-                            className={`h-9 w-auto object-contain transition-[filter] duration-300 ${
-                                flotante
-                                    ? "[filter:brightness(0)_invert(1)]"
-                                    : "mix-blend-multiply"
-                            }`}
+                            className={`h-9 w-auto object-contain transition-[filter] duration-300 ${claseLogo}`}
                         />
                     ) : (
                         <span className={`font-display text-lg ${tinta}`}>

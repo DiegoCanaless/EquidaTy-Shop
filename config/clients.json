@@ -53,40 +53,58 @@
       }
     },
     {
-      "slug": "c-c",
-      "nombre": "C-C",
+      "slug": "sentidosextogc",
+      "nombre": "Sentido Sexto Godoy Cruz",
+      "dominio": "sentido-sexto-gc.com",
       "activo": true,
       "moneda": "ARS",
       "marca": {
-        "logo": "/clients/c-c/logo.webp",
+        "logo": "/clients/sentidosextogc/logo.webp",
+        "logoEnBanner": "original",
         "colores": {
-          "primario": "#1A1614",
-          "acento": "#C9A57B",
-          "fondo": "#F7F3EE",
-          "texto": "#1F1A16"
+          "primario": "#000000",
+          "acento": "#F2C323",
+          "fondo": "#F5F5F5",
+          "texto": "#000000"
         },
-        "tipografia": { "display": "Bodoni Moda", "cuerpo": "Manrope" },
+        "tipografia": { "display": "Bebas Neue", "cuerpo": "Oswald" },
         "banner": {
-          "imagen": "/clients/c-c/banner.webp",
-          "alt": "Imagen banner de la tienda online",
-          "titulo": "Perfumes árabes con firma moderna",
-          "cta": { "texto": "Ver perfumes", "href": "#catalogo" }
+          "imagen": "/clients/sentidosextogc/banner.webp",
+          "alt": "Ropa urbana y casual de Sentido Sexto Godoy Cruz",
+          "titulo": "Ropa urbana, básica y casual",
+          "cta": { "texto": "Ver colección", "href": "#catalogo" }
         }
       },
       "catalogo": {
         "sheetId": "1gEPe1jPiKZZm-63d32BOj--ajvlgzJCs8tiB67MWMP8",
         "rango": "Productos!A1:Z1000"
       },
-      "whatsapp": "5492617171708",
+      "whatsapp": "5492612403547",
       "info": {
-        "descripcion": "Perfumes árabes con firma moderna, seleccionados uno a uno.",
-        "email": "hola@ccperfumes.com",
-        "envios": "Enviamos a todo el país.",
-        "pagos": "Transferencia y Mercado Pago."
+        "descripcion": "Ropa unisex urbana, básica y casual en Godoy Cruz, Mendoza. Prendas para el día a día.",
+        "email": "piojo.sanchez11@gmail.com",
+        "pagos": "Transferencia, Tarjeta, Efectivo."
       },
+      "sucursales": [
+        {
+          "nombre": "Local Godoy Cruz",
+          "direccion": "Lavalle 253, Godoy Cruz Mendoza",
+          "horarios": "Lun a Sáb, 09:30 a 13:00hs y 17:00 a 20:30hs",
+          "telefono": "+54 9 261 240-3547 "
+        },
+        {
+          "nombre": "Local Guaymallen",
+          "direccion": "Libertad 628, Guaymallen, Mendoza",
+          "horarios": "Lun a Sáb, 09:30 a 13:00hs y 17:00 a 20:30hs"
+        },
+        {
+          "nombre": "Local Maipu",
+          "direccion": "Paseo alta Italia , Maipu,  Mendoza",
+          "horarios": "Lun a Sáb, 10:00 a 17:30hs y 17:00 a 21:00hs"
+        }
+      ],
       "redes": {
-        "instagram": "https://www.instagram.com/clauucanales/",
-        "tiktok": "https://tiktok.com/@clauucanales"
+        "instagram": "https://www.instagram.com/sentido_sexto/"
       }
     }
   ]

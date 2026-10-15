@@ -134,11 +134,35 @@ test("la sección de sucursales muestra el mapa y cambia de local", async ({
     ).toBeVisible();
 });
 
-test("una tienda solo online no muestra la sección de sucursales", async ({
+// Sentido Sexto tiene 3 locales (Godoy Cruz, Guaymallén y Maipú): la sección se
+// muestra y el mapa cambia al elegir otro local.
+//
+// Nota: hoy no hay ninguna tienda "solo online", así que no se puede probar el
+// caso inverso (sección oculta). Si vuelve a haber una, recuperar ese test.
+test("una tienda con varios locales muestra la sección y cambia de mapa", async ({
     page,
 }) => {
-    await page.goto("/c-c");
+    await page.goto("/sentidosextogc");
+
     await expect(
         page.getByRole("heading", { name: "Dónde encontrarnos" })
-    ).toHaveCount(0);
+    ).toBeVisible();
+    await expect(page.getByTitle(/Mapa de Local Godoy Cruz/)).toBeVisible();
+
+    await page.getByRole("button", { name: /Local Maipu/ }).click();
+    await expect(page.getByTitle(/Mapa de Local Maipu/)).toBeVisible();
+});
+
+// Las fotos de Drive se sirven por nuestro proxy (`/api/img`): el navegador no
+// puede pedirlas directo a Google (Chrome las bloquea por ORB en localhost).
+test("las fotos de producto pasan por el proxy /api/img", async ({ page }) => {
+    await page.goto("/matesartesanales/catalogo");
+
+    const srcs = await page
+        .locator("img")
+        .evaluateAll((imgs) => imgs.map((i) => i.getAttribute("src") ?? ""));
+
+    expect(
+        srcs.some((s) => s.startsWith("/api/img?id=1a2b3c4d5e6f7g8h9i0jklmnop"))
+    ).toBe(true);
 });

@@ -2,8 +2,8 @@
 //   node scripts/optimizar-imagen.mjs <entrada> <salida> [anchoMax] [calidad] [calidadAlfa]
 //
 // Ejemplos:
-//   node scripts/optimizar-imagen.mjs public/clients/c-c/banner.jpg public/clients/c-c/banner.webp 1536 75 75
-//   node scripts/optimizar-imagen.mjs public/clients/c-c/logo1.png  public/clients/c-c/logo.webp  600 90
+//   node scripts/optimizar-imagen.mjs public/clients/<slug>/banner.png public/clients/<slug>/banner.webp 1536 75 75
+//   node scripts/optimizar-imagen.mjs public/clients/<slug>/logo.png   public/clients/<slug>/logo.webp   600 90
 import sharp from "sharp";
 import { stat } from "node:fs/promises";
 
